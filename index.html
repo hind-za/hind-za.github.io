@@ -1,529 +1,642 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Hind Zabrati — Sécurité IT, Pentest & OT/ICS</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hind Zabrati — Élève ingénieure en Sécurité IT</title>
+<meta name="description" content="Portfolio de Hind Zabrati, élève ingénieure en Sécurité IT (FST Marrakech) : pentest Active Directory, sécurité réseau, sécurité automobile et applications LLM. Recherche un stage PFE de 6 mois à partir de février 2027.">
+<meta name="theme-color" content="#1A237E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#0c1420;
-  --bg-alt:#0f1a2b;
-  --surface:#141f33;
-  --border:#233247;
-  --border-hi:#37496a;
-  --text:#eef1f6;
-  --text-dim:#8fa0b8;
-  --text-faint:#5d6d85;
-  --signal:#e8672f;
-  --signal-dim:#9c4a26;
-  --verify:#3fb8a4;
-  --serif:'Fraunces',serif;
-  --sans:'Inter',sans-serif;
-  --mono:'IBM Plex Mono',monospace;
+  --ink:#161B33;
+  --muted:#4A526B;
+  --faint:#656D88;
+  --line:#DCE0EC;
+  --paper:#FFFFFF;
+  --wash:#F4F5FA;
+  --offense:#1A237E;   /* même bleu que le CV : côté offensif */
+  --defense:#0B7A6E;   /* côté défensif et détection */
+  --sans:'Hanken Grotesk',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
 }
-*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
-html{scroll-behavior:smooth;}
-body{background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.5;-webkit-font-smoothing:antialiased;}
-a{color:inherit;}
-img{max-width:100%;display:block;}
-.wrap{max-width:1120px;margin:0 auto;padding:0 2.4rem;}
-section{padding:6.5rem 0;border-bottom:1px solid var(--border);}
-section:last-of-type{border-bottom:none;}
-h1,h2,h3{font-family:var(--serif);font-weight:600;letter-spacing:-.01em;}
-.eyebrow{font-family:var(--mono);font-size:.78rem;color:var(--signal);margin-bottom:.9rem;}
-.section-head{max-width:640px;margin-bottom:3rem;}
-.section-head h2{font-size:2rem;color:var(--signal);margin-bottom:.75rem;}
-.section-head p{color:var(--text-dim);font-size:1.02rem;}
-.mono{font-family:var(--mono);}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;scroll-padding-top:5rem;}
+body{font-family:var(--sans);color:var(--ink);background:var(--paper);line-height:1.6;font-size:1rem;-webkit-font-smoothing:antialiased;}
+a{color:var(--offense);}
+sup{font-size:.62em;line-height:0;}
+ul,ol{list-style:none;}
+:focus-visible{outline:3px solid var(--offense);outline-offset:3px;border-radius:2px;}
+.wrap{max-width:1080px;margin:0 auto;padding:0 1.5rem;}
+.skip{position:absolute;left:-999px;top:0;background:var(--offense);color:#fff;padding:.6rem 1rem;z-index:200;}
+.skip:focus{left:1rem;top:1rem;}
 
-/* NAV */
-header{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(12,20,32,.86);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);}
-.nav{display:flex;align-items:center;justify-content:space-between;padding:1rem 2.4rem;max-width:1120px;margin:0 auto;}
-.mark{width:34px;height:34px;border:1px solid var(--border-hi);display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-weight:600;font-size:.95rem;color:var(--signal);flex:none;}
-.nav-left{display:flex;align-items:center;gap:.8rem;}
-.nav-left .name{font-size:.88rem;color:var(--text-dim);}
-.nav-left .name strong{color:var(--text);font-weight:500;}
-.nav-links{display:flex;gap:1.9rem;}
-.nav-links a{font-size:.86rem;color:var(--text-dim);text-decoration:none;transition:color .15s;}
-.nav-links a:hover{color:var(--text);}
-.nav-cta{font-size:.82rem;color:var(--text);border:1px solid var(--border-hi);padding:.45rem 1rem;text-decoration:none;transition:border-color .15s,background .15s;white-space:nowrap;}
-.nav-cta:hover{border-color:var(--signal);background:rgba(232,103,47,.08);}
-@media(max-width:820px){.nav-links{display:none;}}
+/* Boutons */
+.btn{display:inline-block;font:inherit;font-weight:600;font-size:.92rem;padding:.65rem 1.2rem;border-radius:4px;text-decoration:none;border:1.5px solid var(--offense);transition:background .15s,color .15s,border-color .15s;}
+.btn-solid{background:var(--offense);color:#fff;}
+.btn-solid:hover{background:#0F1760;border-color:#0F1760;}
+.btn-line{color:var(--offense);background:transparent;}
+.btn-line:hover{background:var(--paper);}
 
-/* HERO */
-#hero{padding-top:11rem;padding-bottom:5.5rem;border-bottom:1px solid var(--border);}
-.hero-grid{display:grid;grid-template-columns:1.15fr 1fr;gap:3.5rem;align-items:center;}
-.hero-eyebrow{font-family:var(--mono);font-size:.82rem;color:var(--signal);margin-bottom:1.3rem;opacity:0;animation:up .6s ease .05s forwards;}
-.hero h1{font-size:clamp(2.6rem,4.6vw,3.6rem);line-height:1.05;color:#fff;margin-bottom:1.2rem;opacity:0;animation:up .6s ease .15s forwards;}
-.hero h1 em{font-style:normal;color:var(--signal);}
-.hero-lede{font-size:1.12rem;color:var(--text-dim);max-width:520px;margin-bottom:2.1rem;opacity:0;animation:up .6s ease .28s forwards;}
-.hero-actions{display:flex;gap:.9rem;flex-wrap:wrap;opacity:0;animation:up .6s ease .4s forwards;}
-.btn{font-size:.88rem;padding:.72rem 1.5rem;text-decoration:none;border:1px solid transparent;display:inline-block;transition:background .15s,border-color .15s,color .15s;}
-.btn-solid{background:var(--signal);color:#0c1420;font-weight:500;}
-.btn-solid:hover{background:#ff7d40;}
-.btn-line{border-color:var(--border-hi);color:var(--text);}
-.btn-line:hover{border-color:var(--signal);color:var(--signal);}
-.hero-status{display:flex;align-items:center;gap:.55rem;margin-top:2.4rem;font-size:.82rem;color:var(--text-dim);opacity:0;animation:up .6s ease .5s forwards;}
-.dot{width:7px;height:7px;border-radius:50%;background:var(--verify);flex:none;box-shadow:0 0 0 3px rgba(63,184,164,.15);}
-@keyframes up{from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:translateY(0);}}
+/* En-tête */
+.site-header{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.95);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);}
+.nav{display:flex;align-items:center;gap:1.5rem;padding-top:.75rem;padding-bottom:.75rem;}
+.brand{font-weight:700;letter-spacing:-.01em;text-decoration:none;color:var(--ink);white-space:nowrap;}
+.main-nav{margin-left:auto;min-width:0;}
+.nav-links{display:flex;gap:1.4rem;overflow-x:auto;}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:.92rem;white-space:nowrap;transition:color .15s;}
+.nav-links a:hover{color:var(--offense);}
+.nav .btn{padding:.45rem 1rem;}
+@media(max-width:760px){
+  .nav{flex-wrap:wrap;gap:.4rem 1rem;}
+  .main-nav{order:3;width:100%;margin-left:0;}
+  .nav-links{padding-bottom:.2rem;}
+  .nav .btn{margin-left:auto;}
+}
 
-.hero-diagram{opacity:0;animation:up .7s ease .3s forwards;}
-.hero-diagram svg{width:100%;height:auto;}
+/* Hero */
+#hero{background:var(--wash);border-bottom:1px solid var(--line);padding:3.5rem 0;}
+h1{font-size:clamp(2.3rem,5.2vw,3.5rem);line-height:1.05;letter-spacing:-.025em;font-weight:700;}
+.hero-lede{margin-top:1.6rem;}
+.role{font-size:1.2rem;color:var(--muted);margin-top:.35rem;}
+.hero-lede{max-width:62ch;font-size:1.1rem;color:var(--muted);margin-bottom:1.5rem;}
+.hero-actions{display:flex;flex-wrap:wrap;gap:.8rem;margin-bottom:1.4rem;}
+.availability{display:flex;align-items:center;gap:.65rem;font-size:.95rem;font-weight:500;}
+.dot{width:9px;height:9px;border-radius:50%;background:var(--defense);box-shadow:0 0 0 4px rgba(11,122,110,.18);flex:none;}
 
-/* ABOUT */
-.about-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:3.5rem;align-items:start;}
-.about-text p{color:var(--text-dim);font-size:1.05rem;margin-bottom:1.1rem;max-width:520px;}
-.about-text p:first-of-type{color:var(--text);font-size:1.15rem;}
-.about-text strong{color:var(--text);font-weight:500;}
-.profile-panel{border:1px solid var(--border);background:var(--bg-alt);}
-.profile-head{display:flex;align-items:center;gap:.5rem;padding:.95rem 1.4rem;border-bottom:1px solid var(--border);}
-.profile-head .dot2{width:6px;height:6px;border-radius:50%;background:var(--verify);}
-.profile-head span{font-family:var(--mono);font-size:.76rem;color:var(--text-faint);}
-.profile-row{display:flex;justify-content:space-between;gap:1rem;padding:1rem 1.4rem;border-bottom:1px solid var(--border);}
-.profile-row:last-child{border-bottom:none;}
-.profile-row .k{font-family:var(--mono);font-size:.78rem;color:var(--text-faint);}
-.profile-row .v{font-size:.9rem;color:var(--text);text-align:right;max-width:220px;}
-.profile-row .v.accent{color:var(--signal);font-family:var(--mono);}
-@media(max-width:820px){.about-grid{grid-template-columns:1fr;}}
+/* Chaîne d'attaque : offensif puis défensif */
+.chain{margin-top:3.2rem;}
+.chain h2{font-size:1.05rem;font-weight:600;margin-bottom:1rem;}
+.chain-sides{display:grid;grid-template-columns:3fr 2fr;column-gap:.5rem;margin-bottom:1.1rem;}
+.chain-sides span{font-size:.88rem;font-weight:600;padding-top:.45rem;border-top:3px solid;}
+.chain-sides .s-off{color:var(--offense);border-color:var(--offense);}
+.chain-sides .s-def{color:var(--defense);border-color:var(--defense);}
+.chain-steps{display:grid;grid-template-columns:repeat(5,1fr);}
+.chain-steps li{position:relative;padding:0;cursor:pointer;}
+.step{display:block;width:100%;text-align:left;font:inherit;color:inherit;background:none;border:0;padding:1.5rem .9rem 0 0;cursor:pointer;}
+.step:hover .step-name{color:var(--c);}
+.chain-steps li.active .step-name{color:var(--c);}
+.chain-steps li.active::before{box-shadow:0 0 0 5px color-mix(in srgb,var(--c) 22%,transparent);}
+.chain-steps li.off{--c:var(--offense);}
+.chain-steps li.def{--c:var(--defense);}
+.chain-steps li::before{content:"";position:absolute;top:0;left:0;width:14px;height:14px;border-radius:50%;background:var(--wash);border:3px solid var(--c);z-index:1;}
+.chain-steps li.def::before{background:var(--c);}
+.chain-steps li::after{content:"";position:absolute;top:6px;left:14px;right:0;height:2px;background:var(--c);}
+.chain-steps li:last-child::after{display:none;}
+.step-name{display:block;font-weight:600;}
+.step-tools{display:block;font-size:.88rem;color:var(--muted);margin-top:.15rem;}
+.side-m{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;}
+.chain-note{margin-top:1.6rem;max-width:66ch;font-size:.95rem;color:var(--muted);}
+@media(prefers-reduced-motion:no-preference){
+  .chain-steps li{animation:reveal .5s ease both;}
+  .chain-steps li:nth-child(1){animation-delay:.2s;}
+  .chain-steps li:nth-child(2){animation-delay:.4s;}
+  .chain-steps li:nth-child(3){animation-delay:.6s;}
+  .chain-steps li:nth-child(4){animation-delay:.8s;}
+  .chain-steps li:nth-child(5){animation-delay:1s;}
+}
+@keyframes reveal{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:none;}}
+@media(max-width:760px){
+  .chain-sides{display:none;}
+  .chain-steps{grid-template-columns:1fr;}
+  .step{padding:0 0 1.4rem 2rem;}
+  .chain-steps li::before{top:.3rem;}
+  .chain-steps li::after{top:1.3rem;bottom:-.3rem;left:6px;right:auto;width:2px;height:auto;}
+  .side-m{position:static;width:auto;height:auto;clip:auto;display:block;font-size:.8rem;font-weight:600;color:var(--c);}
+}
 
-/* FOCUS AREAS */
-.focus-list{display:grid;grid-template-columns:repeat(2,1fr);gap:0;border-top:1px solid var(--border);border-left:1px solid var(--border);}
-.focus-item{padding:1.6rem 1.8rem;border-right:1px solid var(--border);border-bottom:1px solid var(--border);}
-.focus-item h3{font-size:1rem;color:var(--text);margin-bottom:.55rem;font-family:var(--sans);font-weight:600;}
-.focus-item p{font-size:.9rem;color:var(--text-dim);line-height:1.6;}
-@media(max-width:780px){.focus-list{grid-template-columns:1fr;}}
+/* Hero : texte à gauche, portrait à droite */
+.hero-grid{display:grid;grid-template-columns:1fr 230px;gap:3rem;align-items:center;}
+.hero-visual{justify-self:end;}
+.portrait,.monogram{width:210px;height:210px;border-radius:50%;border:4px solid var(--offense);}
+.portrait{object-fit:cover;display:block;}
+.monogram{display:flex;align-items:center;justify-content:center;font-size:3.6rem;font-weight:700;letter-spacing:-.03em;color:var(--offense);background:var(--paper);}
+@media(max-width:820px){
+  .hero-grid{grid-template-columns:1fr;gap:1.6rem;}
+  .hero-visual{order:-1;justify-self:start;}
+  .portrait,.monogram{width:104px;height:104px;border-width:3px;}
+  .monogram{font-size:2.1rem;}
+}
 
-/* SKILLS */
-.skills-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:0;border-top:1px solid var(--border);border-left:1px solid var(--border);}
-.skill-cat{padding:1.7rem 1.9rem;border-right:1px solid var(--border);border-bottom:1px solid var(--border);}
-.skill-cat h3{font-size:.98rem;color:var(--text);margin-bottom:.95rem;font-family:var(--sans);font-weight:600;}
-.skill-tags{display:flex;flex-wrap:wrap;gap:.45rem;}
-.tagchip{font-family:var(--mono);font-size:.74rem;color:var(--text-dim);border:1px solid var(--border-hi);padding:.28rem .65rem;transition:color .15s,border-color .15s;}
-.tagchip:hover{color:var(--signal);border-color:var(--signal);}
-@media(max-width:780px){.skills-grid{grid-template-columns:1fr;}}
+/* Parcours interactif */
+.chain-hint{font-size:.92rem;color:var(--faint);margin:-.5rem 0 1.1rem;}
+.chain-panel{margin-top:1.4rem;background:var(--paper);border:1px solid var(--line);border-radius:4px;padding:1.1rem 1.3rem;}
+.cp{padding-left:1rem;border-left:4px solid var(--c);}
+.cp.off{--c:var(--offense);}
+.cp.def{--c:var(--defense);}
+.cp h3{font-size:1rem;font-weight:700;color:var(--c);margin-bottom:.35rem;}
+.cp p{color:var(--muted);max-width:70ch;margin-bottom:.6rem;}
+.cp ul{display:flex;flex-wrap:wrap;gap:.3rem 1.4rem;font-size:.92rem;}
+.cp a{font-weight:500;}
+.js .cp{display:none;}
+.js .cp.on{display:block;}
 
-/* LANGUAGES */
-.lang-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.2rem;max-width:640px;}
-.lang-card{border:1px solid var(--border);padding:1.6rem 1.8rem;display:flex;justify-content:space-between;align-items:center;}
-.lang-card .lang-name{font-family:var(--serif);font-size:1.15rem;color:var(--text);}
-.lang-card .lang-level{font-family:var(--mono);font-size:.76rem;color:var(--verify);border:1px solid var(--border-hi);padding:.25rem .6rem;}
-@media(max-width:560px){.lang-grid{grid-template-columns:1fr;}}
+/* Schémas de fonctionnement */
+.diagram{margin:1rem 0 1.1rem;padding:1.1rem 1.2rem 1.2rem;background:var(--wash);border:1px solid var(--line);border-radius:6px;}
+.diagram-title{font-size:.88rem;font-weight:600;color:var(--muted);margin-bottom:.8rem;}
+.diagram-title.second{margin-top:1.2rem;}
+.flow{display:flex;gap:.6rem 1.5rem;}
+.flow li{position:relative;flex:1 1 0;min-width:0;background:var(--paper);border:1px solid var(--line);border-top:3px solid var(--c,var(--faint));border-radius:3px;padding:.55rem .7rem .6rem;}
+.flow li.off{--c:var(--offense);}
+.flow li.def{--c:var(--defense);}
+.flow li:not(:last-child)::after{content:"";position:absolute;right:-1.2rem;top:50%;transform:translateY(-50%);border-left:7px solid var(--faint);border-top:5px solid transparent;border-bottom:5px solid transparent;}
+.fn{display:block;font-weight:600;font-size:.88rem;line-height:1.3;}
+.fd{display:block;font-size:.8rem;color:var(--muted);margin-top:.2rem;line-height:1.35;}
+.diagram-note{margin-top:.9rem;padding:.55rem .8rem;border:1px dashed var(--faint);border-radius:3px;background:var(--paper);font-size:.88rem;color:var(--muted);}
+@media(max-width:760px){
+  .diagram{padding:1rem;}
+  .flow{flex-direction:column;gap:1.3rem;}
+  .flow li:not(:last-child)::after{right:auto;left:1.1rem;top:auto;bottom:-1.05rem;transform:none;border-left:5px solid transparent;border-right:5px solid transparent;border-top:7px solid var(--faint);border-bottom:0;}
+}
 
-/* EXPERIENCE */
-.timeline{display:flex;flex-direction:column;}
-.tl-item{display:grid;grid-template-columns:170px 1fr;gap:2rem;padding:2rem 0;border-top:1px solid var(--border);}
-.tl-item:last-child{border-bottom:1px solid var(--border);}
-.tl-date{font-family:var(--mono);font-size:.8rem;color:var(--text-faint);padding-top:.15rem;}
-.tl-body h3{font-size:1.12rem;color:var(--text);margin-bottom:.2rem;font-family:var(--sans);font-weight:600;}
-.tl-org{font-size:.87rem;color:var(--signal);margin-bottom:.85rem;}
-.tl-body ul{list-style:none;display:flex;flex-direction:column;gap:.5rem;}
-.tl-body li{font-size:.96rem;color:var(--text-dim);padding-left:1.05rem;position:relative;}
-.tl-body li::before{content:'';position:absolute;left:0;top:.55em;width:5px;height:1px;background:var(--text-faint);}
-@media(max-width:700px){.tl-item{grid-template-columns:1fr;gap:.6rem;}}
+/* Sections : titre à gauche, contenu à droite */
+section{padding:4.5rem 0;border-bottom:1px solid var(--line);}
+#hero{padding:3.5rem 0;}
+#contact{border-bottom:none;}
+.sec{display:grid;grid-template-columns:220px 1fr;gap:2.5rem;}
+.sec>h2{font-size:1.2rem;font-weight:700;letter-spacing:-.01em;position:sticky;top:5.5rem;align-self:start;}
+@media(max-width:820px){
+  section{padding:3rem 0;}
+  .sec{grid-template-columns:1fr;gap:1.4rem;}
+  .sec>h2{position:static;}
+}
 
-/* PROJECTS */
-.proj-primary{display:flex;flex-direction:column;gap:0;border-top:1px solid var(--border);}
-.proj-row{display:grid;grid-template-columns:1fr 1.5fr;gap:2.5rem;padding:2.2rem 0;border-bottom:1px solid var(--border);}
-.proj-row .tag{font-family:var(--mono);font-size:.74rem;color:var(--verify);text-transform:lowercase;}
-.proj-row h3{font-size:1.18rem;color:var(--text);margin:.5rem 0 0;font-family:var(--sans);font-weight:600;}
-.proj-row .status{display:inline-block;margin-top:.5rem;font-size:.72rem;color:var(--text-faint);border:1px solid var(--border-hi);padding:.15rem .55rem;}
-.proj-desc p{font-size:.96rem;color:var(--text-dim);margin-bottom:1rem;max-width:560px;}
-.proj-pills{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:.9rem;}
-.pill{font-size:.72rem;font-family:var(--mono);color:var(--text-dim);border:1px solid var(--border);padding:.22rem .58rem;}
-.proj-link{font-size:.85rem;color:var(--text-dim);text-decoration:underline;text-decoration-color:var(--border-hi);text-underline-offset:3px;transition:color .15s;}
-.proj-link:hover{color:var(--signal);text-decoration-color:var(--signal);}
-@media(max-width:780px){.proj-row{grid-template-columns:1fr;}}
+/* Listes à puces */
+.points li{position:relative;padding-left:1.1rem;max-width:72ch;color:var(--muted);margin-bottom:.45rem;}
+.points li::before{content:"";position:absolute;left:0;top:.72em;width:5px;height:5px;background:var(--offense);}
 
-.secondary-head{margin:3rem 0 1.4rem;font-size:.85rem;color:var(--text-faint);}
-.proj-secondary{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;}
-.mini-proj{border:1px solid var(--border);padding:1.3rem;}
-.mini-proj h4{font-size:.95rem;color:var(--text);margin-bottom:.5rem;font-family:var(--sans);font-weight:600;}
-.mini-proj p{font-size:.86rem;color:var(--text-dim);margin-bottom:.8rem;}
-.mini-proj a{font-size:.78rem;color:var(--text-faint);text-decoration:none;}
-.mini-proj a:hover{color:var(--signal);}
-@media(max-width:820px){.proj-secondary{grid-template-columns:1fr;}}
+/* Profil */
+.prose p{max-width:66ch;margin-bottom:1rem;color:var(--muted);}
+.prose p:first-child{color:var(--ink);font-size:1.1rem;}
+.defs{border-bottom:1px solid var(--line);--dt:150px;}
+.defs>div{display:grid;grid-template-columns:var(--dt) 1fr;gap:1rem;padding:.8rem 0;border-top:1px solid var(--line);}
+.defs dt{color:var(--faint);font-size:.92rem;}
+.defs dd{font-weight:500;}
+.facts{margin-top:2rem;}
+@media(max-width:600px){.defs>div{grid-template-columns:1fr;gap:.15rem;}}
+
+/* Expérience */
+.job{padding-bottom:2rem;margin-bottom:2rem;border-bottom:1px solid var(--line);}
+.job:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0;}
+.job-head{display:flex;justify-content:space-between;align-items:baseline;gap:.4rem 1rem;flex-wrap:wrap;}
+.job-head h3{font-size:1.1rem;font-weight:600;}
+.when{color:var(--offense);font-weight:600;font-size:.92rem;white-space:nowrap;}
+.org{color:var(--muted);margin-bottom:.8rem;}
+.proj-link{display:inline-block;margin-top:.5rem;font-size:.92rem;font-weight:500;}
+
+/* Projets */
+.proj{padding-bottom:2rem;margin-bottom:2rem;border-bottom:1px solid var(--line);}
+.proj h3{font-size:1.12rem;font-weight:600;line-height:1.35;}
+.meta{display:flex;flex-wrap:wrap;align-items:center;gap:.3rem 1rem;margin:.35rem 0 .8rem;font-size:.88rem;}
+.kind{font-weight:600;color:var(--c);}
+.kind::before{content:"";display:inline-block;width:8px;height:8px;border-radius:2px;background:var(--c);margin-right:.45rem;}
+.kind.off{--c:var(--offense);}
+.kind.def{--c:var(--defense);}
+.kind.both{--c:var(--ink);}
+.kind.both::before{background:linear-gradient(90deg,var(--offense) 50%,var(--defense) 50%);}
+.status{color:var(--faint);border:1px solid var(--line);border-radius:3px;padding:0 .5rem;}
+.proj-desc{max-width:70ch;color:var(--muted);margin-bottom:.8rem;}
+.tech{display:flex;flex-wrap:wrap;gap:.1rem .4rem;font-size:.9rem;color:var(--faint);margin-bottom:.4rem;}
+.tech li:not(:last-child)::after{content:",";}
+.others{margin-top:.5rem;}
+.others h3{font-size:1rem;font-weight:700;margin-bottom:1rem;}
+.others-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;}
+.mini{border-top:2px solid var(--line);padding-top:.9rem;}
+.mini h4{font-size:.98rem;font-weight:600;margin-bottom:.35rem;}
+.mini p{font-size:.92rem;color:var(--muted);margin-bottom:.5rem;}
+.mini a{font-size:.9rem;font-weight:500;}
+@media(max-width:900px){.others-grid{grid-template-columns:1fr;gap:1.2rem;}}
+
+/* Compétences */
+.skills{--dt:210px;}
+.skills dt{color:var(--ink);font-weight:600;font-size:1rem;}
+.skills dd{font-weight:400;}
+.list{display:flex;flex-wrap:wrap;gap:.1rem .4rem;color:var(--muted);}
+.list li:not(:last-child)::after{content:",";}
+
+/* Formation, certifications, langues */
+.edu{display:grid;grid-template-columns:130px 1fr;gap:1rem;padding:1rem 0;border-top:1px solid var(--line);}
+.edu:last-of-type{border-bottom:1px solid var(--line);}
+.yr{color:var(--offense);font-weight:600;font-size:.92rem;}
+.edu h4{font-weight:600;}
+.edu p{color:var(--muted);font-size:.95rem;}
+.sub{margin-top:2.5rem;}
+.sub h3{font-size:1rem;font-weight:700;margin-bottom:.6rem;}
+.two{display:grid;grid-template-columns:1.6fr 1fr;gap:3rem;}
+.row{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;padding:.75rem 0;border-top:1px solid var(--line);}
+.row:last-child{border-bottom:1px solid var(--line);}
+.row .k{font-weight:500;}
+.row .v{color:var(--muted);font-size:.92rem;text-align:right;}
+.pending{color:var(--defense);font-weight:600;}
+@media(max-width:820px){.two{grid-template-columns:1fr;gap:2rem;}.edu{grid-template-columns:1fr;gap:.2rem;}}
 
 /* CTF */
-.ctf-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.4rem;}
-.ctf-card{border:1px solid var(--border);padding:2rem;position:relative;}
-.ctf-rank{font-family:var(--serif);font-size:2.6rem;color:var(--signal);line-height:1;margin-bottom:.6rem;}
-.ctf-card h3{font-size:1.05rem;color:var(--text);margin-bottom:.3rem;font-family:var(--sans);font-weight:600;}
-.ctf-meta{font-size:.85rem;color:var(--text-dim);margin-bottom:1.1rem;}
-.ctf-pills{display:flex;flex-wrap:wrap;gap:.4rem;}
-.ctf-pill{font-size:.72rem;color:var(--text-faint);border:1px solid var(--border);padding:.2rem .55rem;}
-@media(max-width:700px){.ctf-grid{grid-template-columns:1fr;}}
+.ctf{display:grid;grid-template-columns:110px 1fr;gap:1.2rem;padding:1.2rem 0;border-top:1px solid var(--line);}
+.ctf:last-child{border-bottom:1px solid var(--line);}
+.rank{font-size:2rem;font-weight:700;color:var(--offense);line-height:1.1;letter-spacing:-.02em;}
+.ctf h3{font-size:1.05rem;font-weight:600;}
+.ctf p{color:var(--muted);font-size:.95rem;}
+@media(max-width:600px){.ctf{grid-template-columns:1fr;gap:.3rem;}}
 
-/* CERTS + EDUCATION */
-.cert-edu-grid{display:grid;grid-template-columns:1fr 1fr;gap:3.5rem;}
-.cert-list{display:flex;flex-direction:column;}
-.cert-row{display:flex;justify-content:space-between;align-items:center;padding:1rem 0;border-top:1px solid var(--border);}
-.cert-list .cert-row:last-child{border-bottom:1px solid var(--border);}
-.cert-name{font-size:.94rem;color:var(--text);}
-.cert-issuer{font-size:.78rem;color:var(--text-faint);}
-.cert-check{color:var(--verify);font-size:.85rem;}
-.edu-item{padding:1.4rem 0;border-top:1px solid var(--border);}
-.edu-item:last-child{border-bottom:1px solid var(--border);}
-.edu-item .yr{font-family:var(--mono);font-size:.76rem;color:var(--text-faint);}
-.edu-item h4{font-size:.98rem;color:var(--text);margin:.35rem 0 .25rem;font-family:var(--sans);font-weight:600;}
-.edu-item p{font-size:.86rem;color:var(--text-dim);}
-@media(max-width:780px){.cert-edu-grid{grid-template-columns:1fr;gap:2.5rem;}}
+/* Contact */
+.contact-lede{max-width:56ch;color:var(--muted);margin-bottom:1.4rem;}
+.contact-list{margin-top:2rem;}
+.contact-list a{color:var(--ink);}
+.contact-list a:hover{color:var(--offense);}
 
-/* CONTACT */
-#contact{border-bottom:none;}
-.contact-inner{display:grid;grid-template-columns:1.1fr 1fr;gap:3rem;align-items:end;}
-#contact h2{font-size:2.2rem;color:#fff;margin-bottom:1rem;max-width:480px;}
-#contact .lede{color:var(--text-dim);max-width:440px;margin-bottom:1.8rem;}
-.contact-list{display:flex;flex-direction:column;gap:.9rem;}
-.contact-row{display:flex;gap:1.2rem;font-size:.92rem;border-top:1px solid var(--border);padding-top:.9rem;}
-.contact-row .k{font-family:var(--mono);font-size:.74rem;color:var(--text-faint);min-width:88px;padding-top:.1rem;}
-.contact-row a{text-decoration:none;color:var(--text-dim);transition:color .15s;}
-.contact-row a:hover{color:var(--signal);}
-@media(max-width:780px){.contact-inner{grid-template-columns:1fr;}}
+footer{padding:1.6rem 0;font-size:.85rem;color:var(--faint);border-top:1px solid var(--line);}
+footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:.6rem;}
+footer a{color:var(--faint);}
+footer a:hover{color:var(--offense);}
 
-footer{padding:1.6rem 2.4rem;display:flex;justify-content:space-between;font-size:.78rem;color:var(--text-faint);flex-wrap:wrap;gap:.6rem;}
-footer a{text-decoration:none;color:var(--text-faint);}
-footer a:hover{color:var(--signal);}
-
-::selection{background:var(--signal);color:#0c1420;}
+::selection{background:var(--offense);color:#fff;}
 </style>
+<script>document.documentElement.classList.add('js');</script>
 </head>
 <body>
+<a class="skip" href="#main">Aller au contenu</a>
 
-<header>
-  <div class="nav">
-    <div class="nav-left">
-      <div class="mark">ZH</div>
-      <div class="name">Hind <strong>Zabrati</strong></div>
-    </div>
-    <nav class="nav-links">
-      <a href="#apropos">Profil</a>
-      <a href="#experience">Expérience</a>
-      <a href="#projets">Projets</a>
-      <a href="#competences">Compétences</a>
-      <a href="#formation">Formation</a>
-      <a href="#ctf">CTF</a>
-      <a href="#certifications">Certifications</a>
-      <a href="#langues">Langues</a>
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="brand" href="#hero">Hind Zabrati</a>
+    <nav class="main-nav" aria-label="Navigation principale">
+      <ul class="nav-links">
+        <li><a href="#profil">Profil</a></li>
+        <li><a href="#experience">Expérience</a></li>
+        <li><a href="#projets">Projets</a></li>
+        <li><a href="#competences">Compétences</a></li>
+        <li><a href="#formation">Formation</a></li>
+        <li><a href="#ctf">CTF</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
     </nav>
-    <a href="#contact" class="nav-cta">Contact</a>
+    <a class="btn btn-solid" href="CV.pdf" download>Télécharger le CV</a>
   </div>
 </header>
 
+<main id="main">
+
 <section id="hero">
-  <div class="wrap hero-grid">
-    <div>
-      <div class="hero-eyebrow">Recherche d'un stage PFE — 6 mois, à partir de 2027</div>
-      <h1>Attaquer pour comprendre, <em>défendre</em> pour protéger.</h1>
-      <p class="hero-lede">Élève ingénieure en 5<sup>ème</sup> année, Sécurité IT à la FST Marrakech (UCA). Je m'intéresse autant au pentest Active Directory qu'à la défense d'infrastructures (SIEM, IDS/IPS, VPN), avec une spécialisation récente en sécurité des systèmes industriels et automobiles (OT/ICS).</p>
-      <div class="hero-actions">
-        <a href="https://github.com/hind-za/hind-za.github.io/blob/main/CV.pdf" download class="btn btn-solid">Télécharger le CV</a>
-        <a href="#projets" class="btn btn-line">Voir les projets</a>
+  <div class="wrap">
+    <div class="hero-grid">
+      <div class="hero-text">
+        <h1>Hind Zabrati</h1>
+        <p class="role">Élève ingénieure en Sécurité IT, FST Marrakech</p>
+        <p class="hero-lede">Je teste la sécurité des systèmes, puis je la renforce : pentest Active Directory, sécurité réseau, détection d'intrusions, avec un intérêt pour la sécurité automobile et les applications LLM.</p>
+        <div class="hero-actions">
+          <a class="btn btn-solid" href="CV.pdf" download>Télécharger le CV</a>
+          <a class="btn btn-line" href="#projets">Voir les projets</a>
+        </div>
+        <p class="availability"><span class="dot" aria-hidden="true"></span>Disponible pour un stage PFE de 6 mois à partir de février 2027</p>
       </div>
-      <div class="hero-status"><span class="dot"></span> Disponible pour un stage PFE — cybersécurité offensive & défensive</div>
+      <div class="hero-visual">
+        <!-- Photo facultative : ajoute le fichier portraittt.png à côté de ce fichier. Sans elle, les initiales s'affichent. -->
+        <img class="portrait" src="portraittt.png" alt="Portrait de Hind Zabrati" onerror="this.outerHTML='<div class=\'monogram\' aria-hidden=\'true\'>HZ</div>'">
+      </div>
     </div>
-    <div class="hero-diagram">
-      <svg viewBox="0 0 460 360" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
-            <path d="M0,0 L6,3 L0,6 Z" fill="#37496a"/>
-          </marker>
-        </defs>
-        <text x="0" y="20" fill="#5d6d85" font-family="IBM Plex Mono" font-size="11">chaîne d'attaque — vue simplifiée</text>
 
-        <line x1="35" y1="55" x2="35" y2="285" stroke="#233247" stroke-width="1"/>
-
-        <g font-family="Inter" font-size="12.5">
-          <circle cx="35" cy="60" r="5" fill="#0c1420" stroke="#e8672f" stroke-width="1.6"/>
-          <text x="55" y="65" fill="#eef1f6">Reconnaissance</text>
-          <text x="55" y="80" fill="#5d6d85" font-size="10.5">Nmap, OSINT, énumération AD</text>
-
-          <circle cx="35" cy="118" r="5" fill="#0c1420" stroke="#e8672f" stroke-width="1.6"/>
-          <text x="55" y="123" fill="#eef1f6">Exploitation</text>
-          <text x="55" y="138" fill="#5d6d85" font-size="10.5">Metasploit, Kerberoasting, OWASP Top 10</text>
-
-          <circle cx="35" cy="176" r="5" fill="#0c1420" stroke="#e8672f" stroke-width="1.6"/>
-          <text x="55" y="181" fill="#eef1f6">Post-exploitation</text>
-          <text x="55" y="196" fill="#5d6d85" font-size="10.5">Pass-the-Hash, DCSync, NTDS.dit</text>
-
-          <circle cx="35" cy="234" r="5.5" fill="#0c1420" stroke="#3fb8a4" stroke-width="1.8"/>
-          <text x="55" y="239" fill="#eef1f6">Détection</text>
-          <text x="55" y="254" fill="#5d6d85" font-size="10.5">Wazuh, Suricata, analyse d'IoC</text>
-
-          <circle cx="35" cy="282" r="5" fill="#0c1420" stroke="#3fb8a4" stroke-width="1.6"/>
-          <text x="55" y="287" fill="#eef1f6">Remédiation</text>
-          <text x="55" y="302" fill="#5d6d85" font-size="10.5">Durcissement, segmentation VPN/pfSense</text>
-        </g>
-
-        <rect x="255" y="100" width="180" height="70" fill="none" stroke="#233247" stroke-dasharray="3 3"/>
-        <text x="270" y="123" fill="#8fa0b8" font-family="IBM Plex Mono" font-size="10.5">périmètre étendu</text>
-        <text x="270" y="141" fill="#eef1f6" font-family="Inter" font-size="12">OT/ICS · CAN Bus</text>
-        <text x="270" y="157" fill="#5d6d85" font-family="Inter" font-size="10.5">automobile, PLC/SCADA, TARA</text>
-        <path d="M180,118 L255,130" stroke="#37496a" stroke-width="1" marker-end="url(#arrow)"/>
-      </svg>
+    <div class="chain" role="group" aria-labelledby="chain-title">
+      <h2 id="chain-title">Mon périmètre, de la reconnaissance à la remédiation</h2>
+      <p class="chain-hint">Sélectionne une étape pour voir où je l'ai pratiquée.</p>
+      <div class="chain-sides" aria-hidden="true"><span class="s-off">Offensif</span><span class="s-def">Défensif</span></div>
+      <ol class="chain-steps">
+        <li class="off active"><button type="button" class="step" aria-pressed="true" aria-controls="cp0"><span class="side-m">Offensif</span><span class="step-name">Reconnaissance</span><span class="step-tools">Nmap, OSINT, BloodHound</span></button></li>
+        <li class="off"><button type="button" class="step" aria-pressed="false" aria-controls="cp1"><span class="side-m">Offensif</span><span class="step-name">Exploitation</span><span class="step-tools">Metasploit, Kerberoasting, injection de prompt</span></button></li>
+        <li class="off"><button type="button" class="step" aria-pressed="false" aria-controls="cp2"><span class="side-m">Offensif</span><span class="step-name">Post-exploitation</span><span class="step-tools">Pass-the-Hash, DCSync, NTDS.dit</span></button></li>
+        <li class="def"><button type="button" class="step" aria-pressed="false" aria-controls="cp3"><span class="side-m">Défensif</span><span class="step-name">Détection</span><span class="step-tools">Wazuh, Suricata, analyse d'IoC</span></button></li>
+        <li class="def"><button type="button" class="step" aria-pressed="false" aria-controls="cp4"><span class="side-m">Défensif</span><span class="step-name">Remédiation</span><span class="step-tools">Durcissement, segmentation, filtres LLM</span></button></li>
+      </ol>
+      <div class="chain-panel" aria-live="polite">
+        <div class="cp off on" id="cp0">
+          <h3>Reconnaissance</h3>
+          <p>Nmap pour repérer les services exposés pendant la simulation d'attaque chez Ménara, BloodHound pour cartographier les chemins d'attaque d'un domaine Active Directory, OSINT en compétition CTF.</p>
+          <ul><li><a href="#proj-ad">Compromission Active Directory</a></li><li><a href="#job-menara">Stage chez Ménara Holding</a></li></ul>
+        </div>
+        <div class="cp off" id="cp1">
+          <h3>Exploitation</h3>
+          <p>Exploitation de Tomcat Manager avec reverse shell, password spraying et Kerberoasting sur un domaine Active Directory, injection de prompt contre un assistant LLM.</p>
+          <ul><li><a href="#proj-ad">Compromission Active Directory</a></li><li><a href="#proj-llm">Audit d'une application LLM</a></li><li><a href="#job-menara">Stage chez Ménara Holding</a></li></ul>
+        </div>
+        <div class="cp off" id="cp2">
+          <h3>Post-exploitation</h3>
+          <p>Pass-the-Hash, DCSync et dump de NTDS.dit sur le domaine, élévation de privilèges sur Metasploitable 2 après la connexion SSH.</p>
+          <ul><li><a href="#proj-ad">Compromission Active Directory</a></li><li><a href="#job-menara">Stage chez Ménara Holding</a></li></ul>
+        </div>
+        <div class="cp def" id="cp3">
+          <h3>Détection</h3>
+          <p>Analyse des alertes Wazuh et Suricata, règle personnalisée et identification d'IoC chez Ménara, Wazuh pour produire de vraies preuves d'investigation chez Ovivia, et CabinetShield, un IDS passif pour cabinets médicaux.</p>
+          <ul><li><a href="#job-menara">Stage chez Ménara Holding</a></li><li><a href="#job-ovivia">Stage chez Ovivia</a></li><li><a href="#proj-cabinet">CabinetShield</a></li></ul>
+        </div>
+        <div class="cp def" id="cp4">
+          <h3>Remédiation</h3>
+          <p>Durcissement Ubuntu, segmentation pfSense et VPN, filtres, contrôle d'accès RAG et validation des outils pour un assistant LLM, recommandations de remédiation après les attaques simulées.</p>
+          <ul><li><a href="#proj-archi">Architecture d'entreprise</a></li><li><a href="#proj-llm">Audit d'une application LLM</a></li><li><a href="#proj-ad">Compromission Active Directory</a></li></ul>
+        </div>
+      </div>
+      <p class="chain-note">J'applique la même démarche à la sécurité automobile et OT/ICS (CAN Bus, TARA) et à l'audit d'applications LLM.</p>
     </div>
   </div>
 </section>
 
-<section id="apropos">
-  <div class="wrap">
-    <div class="section-head">
-      <h2>Profil</h2>
-    </div>
-    <div class="about-grid">
-      <div class="about-text">
-        <p></p>
-        <p>Je suis Hind Zabrati, élève ingénieure en Sécurité IT à la Faculté des Sciences et Techniques de Marrakech (Université Cadi Ayyad). Mon parcours combine à parts égales la sécurité offensive (pentest, Active Directory) et la sécurité défensive (SIEM, IDS/IPS, VPN), avec une spécialisation récente en sécurité des systèmes industriels et automobiles.</p>
-        <p>J'aime autant chercher comment un système peut être compromis — ce qui me pousse vers le pentest et les CTF — que réfléchir à la manière de le rendre plus résilient, côté détection, architecture réseau et durcissement.</p>
-        <p> Actuellement en dernière année de mon cycle d'ingénieur, je recherche un stage de fin d'études (PFE) de 6 mois pour contribuer à des missions concrètes de sécurité offensive ou défensive.</p>
-        </div>
-      <div class="profile-panel">
-        <div class="profile-head"><span class="dot2"></span><span>profil.txt</span></div>
-        <div class="profile-row"><span class="k">Formation</span><span class="v">5<sup>e</sup> année, Sécurité IT</span></div>
-        <div class="profile-row"><span class="k">Axes</span><span class="v">Offensif · Défensif · OT-ICS</span></div>
-        <div class="profile-row"><span class="k">Stages</span><span class="v">2, dont un à l'international</span></div>
-        <div class="profile-row"><span class="k">CTF (MACC 2026)</span><span class="v accent">62 / 1068 équipes</span></div>
-        <div class="profile-row"><span class="k">Certifications</span><span class="v">3 — Cisco & TryHackMe</span></div>
-        <div class="profile-row"><span class="k">Recherche</span><span class="v accent">Stage PFE, 6 mois</span></div>
+<section id="profil">
+  <div class="wrap sec">
+    <h2>Profil</h2>
+    <div>
+      <div class="prose">
+        <p>Je suis élève ingénieure en dernière année en Sécurité IT à la Faculté des Sciences et Techniques de Marrakech (Université Cadi Ayyad), formée à la sécurité offensive et défensive : pentesting Active Directory, sécurité réseau et détection d'intrusions.</p>
+        <p>Je m'intéresse aussi à la sécurité automobile, où j'ai conçu des scénarios de risque et un challenge CAN Bus pendant mon stage à Doha, et à la sécurité des applications LLM, avec l'audit et le durcissement d'un assistant interne.</p>
+        <p>Je recherche un stage PFE de 6 mois à partir de février 2027 pour contribuer à des missions concrètes de sécurité.</p>
       </div>
+      <dl class="defs facts">
+        <div><dt>Formation</dt><dd>Cycle d'ingénieur en Sécurité IT, 5<sup>e</sup> année</dd></div>
+        <div><dt>Axes</dt><dd>Offensif, défensif, automobile, LLM</dd></div>
+        <div><dt>Stages</dt><dd>2, dont un à l'international</dd></div>
+        <div><dt>CTF</dt><dd>1<sup>re</sup> place à la FSTG au MACC 2026</dd></div>
+        <div><dt>Disponibilité</dt><dd>Stage PFE de 6 mois, février 2027</dd></div>
+      </dl>
     </div>
   </div>
 </section>
 
 <section id="experience">
-  <div class="wrap">
-    <div class="section-head">
-      <h2>Expérience</h2>
-    </div>
-    <div class="timeline">
-      <div class="tl-item">
-        <div class="tl-date">Juillet – Août 2026</div>
-        <div class="tl-body">
-          <h3>Stagiaire cybersécurité — sécurité automobile</h3>
-          <div class="tl-org">Ovivia AI Solution, Doha (Qatar)</div>
-          <ul>
-            <li>Développement d'une plateforme Cyber Range sous Proxmox VE dédiée à la sécurité automobile.</li>
-            <li>Conception de scénarios pédagogiques sur les risques automobiles et simulation d'attaques sur bus CAN.</li>
-            <li>Transformation de rapports d'attaques PLC/SCADA en scénarios pédagogiques interactifs.</li>
-          </ul>
+  <div class="wrap sec">
+    <h2>Expérience</h2>
+    <div>
+      <article class="job" id="job-ovivia">
+        <div class="job-head">
+          <h3>Stagiaire cybersécurité, sécurité automobile</h3>
+          <span class="when">Juillet – Août 2026</span>
         </div>
-      </div>
-      <div class="tl-item">
-        <div class="tl-date">Juillet 2025</div>
-        <div class="tl-body">
-          <h3>Stagiaire cybersécurité — simulation d'attaque & détection</h3>
-          <div class="tl-org">Ménara Holding, Marrakech</div>
-          <ul>
-            <li>Simulation d'attaque (Tomcat → reverse shell → élévation de privilèges) sur lab Kali / Metasploitable 2.</li>
-            <li>Déploiement de Suricata et Wazuh avec règles IDS personnalisées, analyse d'alertes et identification d'IoC.</li>
-          </ul>
-          <a href="https://github.com/hind-za/Simulation-d-attaque-et-d-tection-d-intrusions" target="_blank" class="proj-link" style="display:inline-block;margin-top:.9rem;">Voir le rapport sur GitHub</a>
+        <p class="org">Ovivia AI Solution, Doha (Qatar)</p>
+        <ul class="points">
+          <li>Conception de 8 scénarios du parcours Automotive Risk Management (modules Accidental Risk et Regulatory Risk), basés sur ISO/SAE 21434 et UNECE R155/R156, avec une méthodologie d'investigation standardisée : Discover, Collect Evidence, Analyze, Decide, Mitigate.</li>
+          <li>Déploiement d'environnements multi-VM sous Proxmox VE et intégration de Wazuh (SIEM) pour produire de vraies preuves d'investigation plutôt que des données pré-scénarisées.</li>
+          <li>Développement du module offensif CAN Bus : ICSim, cannelloni et SocketCAN pour simuler un réseau véhicule inter-VM, et challenge Speed Spoofing de 9 tâches mappées sur MITRE ATT&amp;CK for ICS.</li>
+          <li>Proposition, avec une coéquipière, de l'architecture de contenu de la plateforme (Domain, Path, Room, Task), désormais utilisée pour structurer l'ensemble des scénarios.</li>
+          <li>Conversion de rapports d'attaques techniques (PLC, SCADA) d'autres équipes en scénarios pédagogiques structurés.</li>
+        </ul>
+        <div class="diagram">
+          <p class="diagram-title">Méthodologie d'investigation standardisée</p>
+          <ol class="flow">
+            <li><span class="fn">Discover</span></li>
+            <li><span class="fn">Collect Evidence</span></li>
+            <li><span class="fn">Analyze</span></li>
+            <li><span class="fn">Decide</span></li>
+            <li><span class="fn">Mitigate</span></li>
+          </ol>
+          <p class="diagram-title second">Architecture de contenu de la plateforme</p>
+          <ol class="flow">
+            <li><span class="fn">Domain</span></li>
+            <li><span class="fn">Path</span></li>
+            <li><span class="fn">Room</span></li>
+            <li><span class="fn">Task</span></li>
+          </ol>
         </div>
-      </div>
+      </article>
+      <article class="job" id="job-menara">
+        <div class="job-head">
+          <h3>Stagiaire cybersécurité, simulation d'attaque et détection</h3>
+          <span class="when">Juillet 2025</span>
+        </div>
+        <p class="org">Ménara Holding, Marrakech</p>
+        <ul class="points">
+          <li>Simulation d'une attaque chaînée dans un laboratoire isolé de trois machines virtuelles (Kali Linux, Metasploitable 2, Wazuh avec Suricata) : reconnaissance Nmap, exploitation de Tomcat Manager, reverse shell, connexion SSH, élévation de privilèges et post-exploitation.</li>
+          <li>Analyse des alertes détectées (scan Nmap, authentification Tomcat, anomalies SMTP, requêtes HTTP POST suspectes, connexion SSH), règle personnalisée pour détecter les connexions SSH, identification d'IoC et mesures correctives.</li>
+          <li>Mise en évidence d'une limite de détection : sans agent Wazuh sur la cible, les actions locales (création d'un compte root, modification de /etc/shadow) ne sont pas vues. Recommandation d'une surveillance hybride, réseau et hôte.</li>
+        </ul>
+        <div class="diagram">
+          <p class="diagram-title">Laboratoire de simulation et de détection</p>
+          <ol class="flow">
+            <li class="off"><span class="fn">Kali Linux</span><span class="fd">attaque chaînée</span></li>
+            <li><span class="fn">Metasploitable 2</span><span class="fd">cible vulnérable</span></li>
+            <li class="def"><span class="fn">Wazuh et Suricata</span><span class="fd">alertes réseau analysées</span></li>
+          </ol>
+          <p class="diagram-note">Limite relevée : sans agent Wazuh sur la cible, la création d'un compte root et la modification de /etc/shadow n'ont généré aucune alerte.</p>
+        </div>
+        <a class="proj-link" href="https://github.com/hind-za/Simulation-d-attaque-et-d-tection-d-intrusions" target="_blank" rel="noopener">Voir le rapport sur GitHub</a>
+      </article>
     </div>
   </div>
 </section>
 
 <section id="projets">
-  <div class="wrap">
-    <div class="section-head">
-      <h2>Projets</h2>
-    </div>
-    <div class="proj-primary">
-      <div class="proj-row">
-        <div>
-          <div class="tag">sécurité web</div>
-          <h3>Pentest d'application web — OWASP Top 10</h3>
-          <span class="status">en cours</span>
+  <div class="wrap sec">
+    <h2>Projets</h2>
+    <div>
+      <article class="proj" id="proj-cabinet">
+        <h3>CabinetShield, appliance IDS open source pour cabinets médicaux</h3>
+        <p class="meta"><span class="kind def">Défensif</span><span class="status">En cours</span></p>
+        <p class="proj-desc">Appliance locale développée en binôme : Suricata en IDS passif (port miroir) et collecteur Python qui normalise et déduplique les événements EVE JSON. API REST authentifiée (Flask, SQLite) et tableau de bord web qui explique les alertes en français simple.</p>
+        <div class="diagram">
+          <p class="diagram-title">Chaîne de traitement des alertes</p>
+          <ol class="flow">
+            <li><span class="fn">Réseau du cabinet</span><span class="fd">port miroir</span></li>
+            <li class="def"><span class="fn">Suricata</span><span class="fd">IDS passif</span></li>
+            <li class="def"><span class="fn">Collecteur Python</span><span class="fd">normalisation, déduplication EVE JSON</span></li>
+            <li class="def"><span class="fn">SQLite</span><span class="fd">stockage des alertes</span></li>
+            <li class="def"><span class="fn">API REST Flask</span><span class="fd">authentifiée</span></li>
+            <li><span class="fn">Tableau de bord web</span><span class="fd">alertes en français simple</span></li>
+          </ol>
         </div>
-        <div class="proj-desc">
-          <p>Exploitation de vulnérabilités OWASP Top 10 (SQLi, XSS, IDOR, SSRF, upload de fichiers) sur des environnements volontairement vulnérables (DVWA, OWASP Juice Shop), avec rédaction d'un rapport de pentest professionnel incluant preuves de concept et recommandations de remédiation.</p>
-          <div class="proj-pills"><span class="pill">Burp Suite</span><span class="pill">OWASP ZAP</span><span class="pill">DVWA</span><span class="pill">Juice Shop</span></div>
-        </div>
-      </div>
-      <div class="proj-row">
-        <div>
-          <div class="tag">active directory</div>
-          <h3>Compromission complète d'un domaine Active Directory</h3>
-        </div>
-        <div class="proj-desc">
-          <p>Reconnaissance avec BloodHound, password spraying et escalade Kerberos (Kerberoasting, Golden Ticket via DCSync). Post-exploitation : dump NTDS.dit, mouvement latéral par Pass-the-Hash, et recommandations de remédiation.</p>
-          <div class="proj-pills"><span class="pill">BloodHound</span><span class="pill">Mimikatz</span><span class="pill">NetExec</span><span class="pill">Impacket</span></div>
-          <a href="https://github.com/hind-za" target="_blank" class="proj-link">Voir sur GitHub</a>
-        </div>
-      </div>
-      <div class="proj-row">
-        <div>
-          <div class="tag">infrastructure réseau</div>
-          <h3>Conception et sécurisation d'une architecture d'entreprise</h3>
-        </div>
-        <div class="proj-desc">
-          <p>Architecture segmentée (pfSense, Ubuntu, Kali) avec VPN client-à-site (OpenVPN, PKI interne) et durcissement du système Ubuntu (UFW, SSH). Déploiement de Suricata en IPS inline, validé par simulation d'attaques réseau (scans, brute force, flood).</p>
-          <div class="proj-pills"><span class="pill">pfSense</span><span class="pill">OpenVPN</span><span class="pill">Suricata</span><span class="pill">UFW</span></div>
-        </div>
-      </div>
-    </div>
+        <ul class="tech"><li>Suricata</li><li>Python</li><li>Flask</li><li>SQLite</li><li>API REST</li><li>Debian</li></ul>
+      </article>
 
-    <div class="secondary-head">Autres projets</div>
-    <div class="proj-secondary">
-      <div class="mini-proj">
-        <h4>Investigation en digital forensics</h4>
-        <p>Étude du processus DFIR et de ses branches (réseau, mobile, cloud) ; analyse forensique avec Autopsy sur un cas TryHackMe.</p>
-        <a href="https://github.com/hind-za/Digital-Forensics-Investigation" target="_blank">Voir sur GitHub</a>
-      </div>
-      <div class="mini-proj">
-        <h4>Blockchain & hashchain</h4>
-        <p>Mini-blockchain avec Proof of Work, vérification d'intégrité et simulation d'attaque à 51 %, visualisée avec la Web Crypto API.</p>
-        <a href="https://github.com/hind-za/blockchain" target="_blank">Voir sur GitHub</a>
-      </div>
-      <div class="mini-proj">
-        <h4>CervicalCare — plateforme médicale sécurisée</h4>
-        <p>Plateforme de détection assistée par IA du cancer du col, avec 2FA, chiffrement AES-256, TLS 1.3 et audit trail complet.</p>
-        <a href="https://github.com/hind-za/cervicalcancerdetection-clinic" target="_blank">Voir sur GitHub</a>
+      <article class="proj" id="proj-llm">
+        <h3>Audit et sécurisation d'une application LLM</h3>
+        <p class="meta"><span class="kind both">Offensif et défensif</span></p>
+        <p class="proj-desc">Audit en boîte grise d'un assistant interne (RAG, appels d'outils) : injection de prompt, fuite de données, agentivité excessive, avec taux de réussite des attaques mesurés sur plusieurs essais. Remédiation (filtres, contrôle d'accès RAG, validation des outils), re-test avant/après et recommandations de supervision.</p>
+        <div class="diagram">
+          <p class="diagram-title">Démarche d'audit</p>
+          <ol class="flow">
+            <li class="off"><span class="fn">Attaques</span><span class="fd">injection de prompt, fuite de données, agentivité excessive</span></li>
+            <li class="off"><span class="fn">Mesure</span><span class="fd">taux de réussite sur plusieurs essais</span></li>
+            <li class="def"><span class="fn">Remédiation</span><span class="fd">filtres, contrôle d'accès RAG, validation des outils</span></li>
+            <li class="def"><span class="fn">Re-test</span><span class="fd">comparaison avant/après</span></li>
+            <li class="def"><span class="fn">Supervision</span><span class="fd">recommandations</span></li>
+          </ol>
+        </div>
+        <ul class="tech"><li>OWASP Top 10 for LLM</li><li>Ollama</li><li>ChromaDB</li><li>Gradio</li></ul>
+      </article>
+
+      <article class="proj" id="proj-ad">
+        <h3>Compromission complète d'un domaine Active Directory</h3>
+        <p class="meta"><span class="kind off">Offensif</span></p>
+        <p class="proj-desc">Reconnaissance avec BloodHound, password spraying et escalade Kerberos (Kerberoasting, Golden Ticket via DCSync). Post-exploitation : dump NTDS.dit, mouvement latéral par Pass-the-Hash et recommandations de remédiation.</p>
+        <div class="diagram">
+          <p class="diagram-title">Chemin d'attaque</p>
+          <ol class="flow">
+            <li class="off"><span class="fn">Reconnaissance</span><span class="fd">BloodHound</span></li>
+            <li class="off"><span class="fn">Password spraying</span><span class="fd">comptes du domaine</span></li>
+            <li class="off"><span class="fn">Kerberoasting</span><span class="fd">escalade Kerberos</span></li>
+            <li class="off"><span class="fn">DCSync</span><span class="fd">Golden Ticket</span></li>
+            <li class="off"><span class="fn">NTDS.dit</span><span class="fd">dump des identifiants</span></li>
+            <li class="off"><span class="fn">Pass-the-Hash</span><span class="fd">mouvement latéral</span></li>
+          </ol>
+        </div>
+        <ul class="tech"><li>BloodHound</li><li>Kerberos</li><li>Mimikatz</li><li>NetExec</li><li>Impacket</li></ul>
+        <a class="proj-link" href="https://github.com/hind-za" target="_blank" rel="noopener">Voir sur GitHub</a>
+      </article>
+
+      <article class="proj" id="proj-archi">
+        <h3>Conception et sécurisation d'une architecture d'entreprise</h3>
+        <p class="meta"><span class="kind def">Défensif</span></p>
+        <p class="proj-desc">Architecture segmentée (pfSense, Ubuntu, Kali) avec VPN client-à-site (OpenVPN, PKI interne) et durcissement du système Ubuntu (UFW, SSH). Déploiement de Suricata en IPS inline, validé par simulation d'attaques réseau (scans, brute force, flood).</p>
+        <div class="diagram">
+          <p class="diagram-title">Accès distant sécurisé</p>
+          <ol class="flow">
+            <li><span class="fn">Client distant</span><span class="fd">accès depuis l'extérieur</span></li>
+            <li class="def"><span class="fn">Tunnel OpenVPN</span><span class="fd">client-à-site, PKI interne</span></li>
+            <li class="def"><span class="fn">pfSense</span><span class="fd">segmentation du réseau</span></li>
+            <li class="def"><span class="fn">Serveur Ubuntu</span><span class="fd">durci : UFW, SSH</span></li>
+          </ol>
+          <p class="diagram-title second">Validation par simulation d'attaques</p>
+          <ol class="flow">
+            <li class="off"><span class="fn">Kali Linux</span><span class="fd">scans, brute force, flood</span></li>
+            <li class="def"><span class="fn">Suricata</span><span class="fd">IPS inline</span></li>
+            <li><span class="fn">Réseau protégé</span><span class="fd">efficacité de l'IPS validée</span></li>
+          </ol>
+        </div>
+        <ul class="tech"><li>pfSense</li><li>OpenVPN</li><li>Suricata</li><li>UFW</li></ul>
+      </article>
+
+      <article class="proj">
+        <h3>Pentest d'application web, OWASP Top 10</h3>
+        <p class="meta"><span class="kind off">Offensif</span><span class="status">En cours</span></p>
+        <p class="proj-desc">Exploitation de vulnérabilités OWASP Top 10 (SQLi, XSS, IDOR, SSRF, upload de fichiers) sur des environnements volontairement vulnérables (DVWA, OWASP Juice Shop), avec rédaction d'un rapport de pentest incluant preuves de concept et recommandations de remédiation.</p>
+        <ul class="tech"><li>Burp Suite</li><li>OWASP ZAP</li><li>DVWA</li><li>Juice Shop</li></ul>
+      </article>
+
+      <div class="others">
+        <h3>Autres projets</h3>
+        <div class="others-grid">
+          <div class="mini">
+            <h4>Investigation en digital forensics</h4>
+            <p>Étude du processus DFIR et de ses branches (réseau, mobile, cloud) ; analyse forensique avec Autopsy sur un cas TryHackMe.</p>
+            <a href="https://github.com/hind-za/Digital-Forensics-Investigation" target="_blank" rel="noopener">Voir sur GitHub</a>
+          </div>
+          <div class="mini">
+            <h4>Blockchain et hashchain</h4>
+            <p>Mini-blockchain avec Proof of Work, vérification d'intégrité et simulation d'attaque à 51 %, visualisée avec la Web Crypto API.</p>
+            <a href="https://github.com/hind-za/blockchain" target="_blank" rel="noopener">Voir sur GitHub</a>
+          </div>
+          <div class="mini">
+            <h4>CervicalCare, plateforme médicale sécurisée</h4>
+            <p>Plateforme de détection assistée par IA du cancer du col, avec 2FA, chiffrement AES-256, TLS 1.3 et audit trail complet.</p>
+            <a href="https://github.com/hind-za/cervicalcancerdetection-clinic" target="_blank" rel="noopener">Voir sur GitHub</a>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
 <section id="competences">
-  <div class="wrap">
-    <div class="section-head">
-      <h2>Compétences Techniques</h2>
-    </div>
-    <div class="skills-grid">
-      <div class="skill-cat">
-        <h3>Offensif & sécurité web</h3>
-        <div class="skill-tags">
-          <span class="tagchip">Nmap</span><span class="tagchip">Metasploit</span><span class="tagchip">BloodHound</span>
-          <span class="tagchip">Mimikatz</span><span class="tagchip">NetExec</span><span class="tagchip">Impacket</span>
-          <span class="tagchip">Hydra</span><span class="tagchip">Hashcat</span><span class="tagchip">Burp Suite</span>
-          <span class="tagchip">OWASP ZAP</span><span class="tagchip">OWASP Top 10</span>
-        </div>
-      </div>
-      <div class="skill-cat">
-        <h3>Défensif & réseaux</h3>
-        <div class="skill-tags">
-          <span class="tagchip">Wazuh (SIEM)</span><span class="tagchip">Suricata (IDS/IPS)</span>
-          <span class="tagchip">Wireshark</span><span class="tagchip">pfSense</span><span class="tagchip">OpenVPN</span>
-        </div>
-      </div>
-      <div class="skill-cat">
-        <h3>Sécurité OT/ICS & automobile</h3>
-        <div class="skill-tags">
-          <span class="tagchip">CAN Bus</span><span class="tagchip">ICSim</span><span class="tagchip">Proxmox VE</span>
-          <span class="tagchip">PLC/SCADA</span><span class="tagchip">TARA</span>
-        </div>
-      </div>
-      <div class="skill-cat">
-        <h3>Systèmes & programmation</h3>
-        <div class="skill-tags">
-          <span class="tagchip">Linux</span><span class="tagchip">Windows Server</span><span class="tagchip">Active Directory</span>
-          <span class="tagchip">Kerberos</span><span class="tagchip">GNS3</span><span class="tagchip">Git/GitHub</span>
-          <span class="tagchip">Python</span><span class="tagchip">C</span><span class="tagchip">Java</span>
-          <span class="tagchip">JavaScript</span><span class="tagchip">PHP</span><span class="tagchip">SQL</span>
-        </div>
-      </div>
-      <div class="skill-cat">
-        <h3>Cryptographie & gouvernance</h3>
-        <div class="skill-tags">
-          <span class="tagchip">AES</span><span class="tagchip">RSA</span><span class="tagchip">Diffie-Hellman</span>
-          <span class="tagchip">SHA-256</span><span class="tagchip">TLS 1.3</span><span class="tagchip">ISO 27001</span>
-          <span class="tagchip">Analyse des risques</span>
-        </div>
-      </div>
-    </div>
+  <div class="wrap sec">
+    <h2>Compétences techniques</h2>
+    <dl class="defs skills">
+      <div><dt>Sécurité offensive</dt><dd><ul class="list"><li>Nmap</li><li>Metasploit</li><li>BloodHound</li><li>Mimikatz</li><li>NetExec</li><li>Impacket</li><li>Hydra</li><li>Hashcat</li><li>Burp Suite</li><li>OWASP ZAP</li></ul></dd></div>
+      <div><dt>Sécurité défensive</dt><dd><ul class="list"><li>Wazuh (SIEM)</li><li>Security Onion</li><li>Suricata (IDS/IPS)</li><li>Wireshark</li></ul></dd></div>
+      <div><dt>Sécurité LLM</dt><dd><ul class="list"><li>OWASP Top 10 for LLM</li><li>RAG</li><li>Ollama</li><li>ChromaDB</li><li>garak</li><li>LLM Guard</li></ul></dd></div>
+      <div><dt>OT/ICS et automobile</dt><dd><ul class="list"><li>CAN Bus</li><li>ICSim</li><li>Proxmox VE</li><li>TARA</li><li>PLC/SCADA</li><li>ISO/SAE 21434</li><li>UNECE R155/R156</li><li>MITRE ATT&amp;CK for ICS</li></ul></dd></div>
+      <div><dt>Réseaux</dt><dd><ul class="list"><li>pfSense</li><li>OpenVPN</li><li>GNS3</li></ul></dd></div>
+      <div><dt>Développement et données</dt><dd><ul class="list"><li>Flask</li><li>API REST</li><li>SQLite</li><li>Docker Compose</li><li>Debian</li></ul></dd></div>
+      <div><dt>Systèmes et programmation</dt><dd><ul class="list"><li>Linux</li><li>Windows Server</li><li>Active Directory</li><li>Kerberos</li><li>Git/GitHub</li><li>Python</li><li>C</li><li>Java</li><li>JavaScript</li><li>PHP</li><li>SQL</li></ul></dd></div>
+      <div><dt>Cryptographie et gouvernance</dt><dd><ul class="list"><li>AES</li><li>RSA</li><li>Diffie-Hellman</li><li>SHA-256</li><li>TLS 1.3</li><li>ISO 27001</li><li>Analyse des risques</li></ul></dd></div>
+    </dl>
   </div>
 </section>
 
 <section id="formation">
-  <div class="wrap">
-    <div class="section-head">
-      <h2>Formation</h2>
-    </div>
-    <div class="edu-item">
-      <div class="yr">2024 – 2027</div>
-      <h4>Cycle d'ingénieur en Sécurité IT</h4>
-      <p>Faculté des Sciences et Techniques de Marrakech — Université Cadi Ayyad</p>
-    </div>
-    <div class="edu-item">
-      <div class="yr">2021 – 2024</div>
-      <h4>DEUST — Mathématiques, Informatique, Physique, Chimie (MIPC)</h4>
-      <p>Faculté des Sciences et Techniques de Marrakech — Université Cadi Ayyad</p>
+  <div class="wrap sec">
+    <h2>Formation</h2>
+    <div>
+      <div class="edu">
+        <div class="yr">2024 – 2027</div>
+        <div><h4>Cycle d'ingénieur en Sécurité IT</h4><p>Faculté des Sciences et Techniques de Marrakech, Université Cadi Ayyad</p></div>
+      </div>
+      <div class="edu">
+        <div class="yr">2021 – 2024</div>
+        <div><h4>DEUST en Mathématiques, Informatique, Physique, Chimie (MIPC)</h4><p>Faculté des Sciences et Techniques de Marrakech, Université Cadi Ayyad</p></div>
+      </div>
+
+      <div class="sub two">
+        <div>
+          <h3>Certifications</h3>
+          <div class="row"><span class="k">Parcours AI Security <span class="pending">en cours</span></span><span class="v">TryHackMe</span></div>
+          <div class="row"><span class="k">Parcours Cybersecurity 101</span><span class="v">TryHackMe</span></div>
+          <div class="row"><span class="k">Ethical Hacker</span><span class="v">Cisco Networking Academy</span></div>
+          <div class="row"><span class="k">Introduction à la cybersécurité</span><span class="v">Cisco Networking Academy</span></div>
+        </div>
+        <div>
+          <h3>Langues</h3>
+          <div class="row"><span class="k">Français</span><span class="v">courant</span></div>
+          <div class="row"><span class="k">Anglais</span><span class="v">courant</span></div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
 <section id="ctf">
-  <div class="wrap">
-    <div class="section-head">
-      <h2>Compétitions CTF</h2>
-    </div>
-    <div class="ctf-grid">
-      <div class="ctf-card">
-        <div class="ctf-rank">1<sup style="font-size:1rem;">re</sup></div>
-        <h3>MACC 2026 — DGSSI & SecDojo</h3>
-        <div class="ctf-meta">1<sup>re</sup> place à la FSTG · 62<sup>e</sup> place sur 1068 équipes au niveau national</div>
-        <div class="ctf-pills"><span class="ctf-pill">Compétition nationale</span><span class="ctf-pill">Équipe FSTG</span></div>
+  <div class="wrap sec">
+    <h2>Compétitions CTF</h2>
+    <div>
+      <div class="ctf">
+        <div class="rank">1<sup>re</sup></div>
+        <div><h3>MACC 2026, DGSSI et SecDojo</h3><p>1<sup>re</sup> place à la FSTG et 62<sup>e</sup> sur 1068 équipes au niveau global.</p></div>
       </div>
-      <div class="ctf-card">
-        <div class="ctf-rank">#8</div>
-        <h3>ST4F1T CTF — ENSA Marrakech</h3>
-        <div class="ctf-meta">2025 · Forensics, OSINT, Reverse Engineering, Web, Cryptographie</div>
-        <div class="ctf-pills"><span class="ctf-pill">Forensics</span><span class="ctf-pill">OSINT</span><span class="ctf-pill">Rev. Eng.</span><span class="ctf-pill">Web</span><span class="ctf-pill">Crypto</span></div>
+      <div class="ctf">
+        <div class="rank">8<sup>e</sup></div>
+        <div><h3>ST4F1T CTF, ENSA Marrakech (2025)</h3><p>8<sup>e</sup> place. Forensics, OSINT, reverse engineering, web, cryptographie.</p></div>
       </div>
-    </div>
-  </div>
-</section>
-
-<section id="certifications">
-  <div class="wrap">
-    <div class="section-head">
-      <h2>Certifications</h2>
-    </div>
-    <div class="cert-list" style="max-width:640px;">
-      <div class="cert-row"><div><div class="cert-name">Ethical Hacker</div><div class="cert-issuer">Cisco Networking Academy</div></div><div class="cert-check">✓</div></div>
-      <div class="cert-row"><div><div class="cert-name">Introduction à la cybersécurité</div><div class="cert-issuer">Cisco Networking Academy</div></div><div class="cert-check">✓</div></div>
-      <div class="cert-row"><div><div class="cert-name">Cybersecurity 101 — parcours complet</div><div class="cert-issuer">TryHackMe</div></div><div class="cert-check">✓</div></div>
-    </div>
-  </div>
-</section>
-
-<section id="langues">
-  <div class="wrap">
-    <div class="section-head">
-      <h2>Langues</h2>
-    </div>
-    <div class="lang-grid">
-      <div class="lang-card"><span class="lang-name">Français</span><span class="lang-level">courant</span></div>
-      <div class="lang-card"><span class="lang-name">Anglais</span><span class="lang-level">courant</span></div>
     </div>
   </div>
 </section>
 
 <section id="contact">
-  <div class="wrap contact-inner">
+  <div class="wrap sec">
+    <h2>Contact</h2>
     <div>
-      <div class="eyebrow">contact</div>
-      <h2>Discutons d'un stage PFE.</h2>
-      <p class="lede">Ouverte aux opportunités en sécurité offensive, défensive, ou industrielle/OT — à Marrakech ou à distance.</p>
-      <a href="mailto:zabratihind@hotmail.com" class="btn btn-solid">Écrire un email</a>
-    </div>
-    <div class="contact-list">
-      <div class="contact-row"><span class="k">EMAIL</span><a href="mailto:zabratihind@hotmail.com">zabratihind@hotmail.com</a></div>
-      <div class="contact-row"><span class="k">TÉLÉPHONE</span><span>+212 777 826 922</span></div>
-      <div class="contact-row"><span class="k">LINKEDIN</span><a href="https://www.linkedin.com/in/hind-zabrati-bab5a6334" target="_blank">hind-zabrati</a></div>
-      <div class="contact-row"><span class="k">GITHUB</span><a href="https://github.com/hind-za" target="_blank">hind-za</a></div>
-      <div class="contact-row"><span class="k">LOCALISATION</span><span>Marrakech, Maroc</span></div>
+      <p class="contact-lede">Ouverte aux stages PFE en sécurité offensive, défensive, automobile ou LLM, à Marrakech ou à distance.</p>
+      <a class="btn btn-solid" href="mailto:zabratihind@hotmail.com">Écrire un email</a>
+      <dl class="defs contact-list">
+        <div><dt>Email</dt><dd><a href="mailto:zabratihind@hotmail.com">zabratihind@hotmail.com</a></dd></div>
+        <div><dt>Téléphone</dt><dd><a href="tel:+212777826922">+212 777 826 922</a></dd></div>
+        <div><dt>LinkedIn</dt><dd><a href="https://www.linkedin.com/in/hind-zabrati-bab5a6334" target="_blank" rel="noopener">linkedin.com/in/hind-zabrati</a></dd></div>
+        <div><dt>GitHub</dt><dd><a href="https://github.com/hind-za" target="_blank" rel="noopener">github.com/hind-za</a></dd></div>
+        <div><dt>Localisation</dt><dd>Marrakech, Maroc</dd></div>
+      </dl>
     </div>
   </div>
 </section>
 
+</main>
+
 <footer>
-  <div>Hind Zabrati — Sécurité IT, FST Marrakech</div>
-  <div><a href="https://github.com/hind-za" target="_blank">github.com/hind-za</a></div>
+  <div class="wrap">
+    <span>Hind Zabrati, Sécurité IT, FST Marrakech</span>
+    <a href="https://github.com/hind-za" target="_blank" rel="noopener">github.com/hind-za</a>
+  </div>
 </footer>
 
+
+<script>
+(function () {
+  var items = document.querySelectorAll('.chain-steps li');
+  var panels = document.querySelectorAll('.cp');
+  function select(i) {
+    items.forEach(function (li, k) {
+      var on = k === i;
+      li.classList.toggle('active', on);
+      li.querySelector('.step').setAttribute('aria-pressed', on ? 'true' : 'false');
+    });
+    panels.forEach(function (p, k) { p.classList.toggle('on', k === i); });
+  }
+  items.forEach(function (li, i) {
+    li.addEventListener('click', function () { select(i); });
+  });
+})();
+</script>
 </body>
 </html>
