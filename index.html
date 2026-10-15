@@ -86,6 +86,12 @@ h1{font-size:clamp(2.3rem,5.2vw,3.5rem);line-height:1.05;letter-spacing:-.025em;
 .chain-steps li:last-child::after{display:none;}
 .step-name{display:block;font-weight:600;}
 .step-tools{display:block;font-size:.88rem;color:var(--muted);margin-top:.15rem;}
+.filters{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:2rem;}
+.filters button{font:inherit;font-size:.92rem;padding:.4rem .95rem;border:1px solid var(--line);background:#fff;color:var(--muted);border-radius:999px;cursor:pointer;}
+.filters button:hover{border-color:var(--ink);color:var(--ink);}
+.filters button[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:#fff;}
+.filters button:focus-visible{outline:2px solid var(--offense);outline-offset:2px;}
+.proj[hidden]{display:none;}
 .side-m{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;}
 .chain-note{margin-top:1.6rem;max-width:66ch;font-size:.95rem;color:var(--muted);}
 @media(prefers-reduced-motion:no-preference){
@@ -250,14 +256,150 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:.6rem
 footer a{color:var(--faint);}
 footer a:hover{color:var(--offense);}
 
+
+/* ---- Hero sombre et paquet animé ---- */
+#hero{--bg:#0D1230;--hi:#9FA8FF;--hd:#3FD9C3;background:var(--bg);color:#fff;border-bottom:none;padding:4.2rem 0 4rem;position:relative;overflow:hidden;
+  background-image:linear-gradient(rgba(159,168,255,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(159,168,255,.07) 1px,transparent 1px);background-size:44px 44px;background-position:-1px -1px;}
+#hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,var(--bg) 100%);pointer-events:none;}
+#hero .wrap{position:relative;z-index:1;}
+#hero h1{color:#fff;font-size:clamp(2.6rem,6vw,4.2rem);}
+#hero .role{color:#C5CBEA;}
+#hero .hero-lede{color:#B3BAD9;}
+#hero .btn-solid{background:#fff;color:#0D1230;border-color:#fff;}
+#hero .btn-solid:hover{background:#E4E7FF;border-color:#E4E7FF;}
+#hero .btn-line{color:#fff;border-color:rgba(255,255,255,.55);}
+#hero .btn-line:hover{background:rgba(255,255,255,.1);}
+#hero .availability{color:#E6E9FA;}
+#hero .dot{background:var(--hd);box-shadow:0 0 0 4px rgba(63,217,195,.22);}
+#hero :focus-visible{outline-color:#fff;}
+#hero .portrait,#hero .monogram{border-color:var(--hi);box-shadow:0 0 0 8px rgba(159,168,255,.12);}
+#hero .monogram{background:#141A44;color:#fff;}
+#hero .chain h2{color:#fff;}
+#hero .chain-hint{color:#98A0C4;}
+#hero .chain-sides .s-off{color:var(--hi);border-color:var(--hi);}
+#hero .chain-sides .s-def{color:var(--hd);border-color:var(--hd);}
+#hero .chain-steps li.off{--c:var(--hi);}
+#hero .chain-steps li.def{--c:var(--hd);}
+#hero .chain-steps li::before{background:var(--bg);}
+#hero .chain-steps li.def::before{background:var(--c);}
+#hero .step-name{color:#fff;}
+#hero .step:hover .step-name,#hero .chain-steps li.active .step-name{color:var(--c);}
+#hero .step-tools{color:#98A0C4;}
+#hero .chain-panel{background:#141A44;border-color:#2B3270;}
+#hero .cp.off{--c:var(--hi);}
+#hero .cp.def{--c:var(--hd);}
+#hero .cp p{color:#B3BAD9;}
+#hero .cp a{color:#fff;}
+#hero .chain-note{color:#98A0C4;}
+.chain-track{position:relative;}
+.packet{display:none;}
+@media(min-width:761px) and (prefers-reduced-motion:no-preference){
+  .packet{display:block;position:absolute;top:2px;left:0;width:10px;height:10px;border-radius:50%;background:var(--hi);box-shadow:0 0 12px 3px rgba(159,168,255,.7);z-index:2;pointer-events:none;animation:travel 7s linear 1.4s infinite;}
+}
+@keyframes travel{
+  0%{left:2px;opacity:0;background:#9FA8FF;box-shadow:0 0 12px 3px rgba(159,168,255,.7);}
+  4%{opacity:1;}
+  18%{left:calc(20% + 2px);}
+  36%{left:calc(40% + 2px);}
+  52%{left:calc(60% + 2px);background:#9FA8FF;box-shadow:0 0 12px 3px rgba(159,168,255,.7);}
+  56%{background:#3FD9C3;box-shadow:0 0 16px 5px rgba(63,217,195,.8);}
+  74%{left:calc(80% + 2px);background:#3FD9C3;box-shadow:0 0 16px 5px rgba(63,217,195,.8);}
+  88%{left:calc(80% + 2px);opacity:1;}
+  100%{left:calc(80% + 2px);opacity:0;}
+}
+
+/* ---- Rang au CTF ---- */
+.rankbar{position:relative;height:6px;border-radius:3px;background:var(--line);margin:1.1rem 0 .5rem;max-width:420px;}
+.rankbar i{position:absolute;left:0;top:0;bottom:0;border-radius:3px;background:var(--offense);}
+.rankbar b{position:absolute;top:-4px;width:14px;height:14px;border-radius:50%;background:var(--paper);border:3px solid var(--offense);transform:translateX(-50%);}
+.rb-cap{font-size:.88rem;color:var(--faint);}
+
+/* ---- Contact sombre ---- */
+#contact{background:#0D1230;color:#fff;}
+#contact .sec>h2{color:#fff;}
+#contact .contact-lede{color:#B3BAD9;}
+#contact .btn-solid{background:#fff;color:#0D1230;border-color:#fff;}
+#contact .btn-solid:hover{background:#E4E7FF;border-color:#E4E7FF;}
+#contact .defs,#contact .defs>div{border-color:#2B3270;}
+#contact .defs dt{color:#98A0C4;}
+#contact .contact-list a{color:#fff;}
+#contact .contact-list a:hover{color:#9FA8FF;}
+#contact :focus-visible{outline-color:#fff;}
+
 ::selection{background:var(--offense);color:#fff;}
+
+/* ---- Touches visuelles par section ---- */
+.progress{position:absolute;left:0;bottom:-1px;height:3px;width:100%;background:linear-gradient(90deg,var(--offense),var(--defense));transform-origin:left;transform:scaleX(0);}
+.nav-links a.cur{color:var(--offense);box-shadow:inset 0 -2px 0 var(--offense);}
+
+/* Profil : chiffres */
+.figures{display:grid;grid-template-columns:repeat(4,1fr);margin-top:2.2rem;}
+.fig{padding:.2rem 1.2rem;border-left:3px solid var(--offense);}
+.fig:nth-child(even){border-color:var(--defense);}
+.fig:first-child{padding-left:1rem;}
+.fig b{display:block;font-size:2.5rem;font-weight:700;letter-spacing:-.03em;line-height:1.05;color:var(--ink);font-variant-numeric:tabular-nums;}
+.fig span{display:block;font-size:.9rem;color:var(--muted);margin-top:.3rem;max-width:16ch;}
+@media(max-width:760px){.figures{grid-template-columns:1fr 1fr;row-gap:1.6rem;}.fig{padding-left:1rem;}}
+
+/* Expérience : rail */
+#experience .job{position:relative;padding-left:2rem;border-bottom:none;}
+#experience .job::before{content:"";position:absolute;left:5px;top:.55rem;bottom:-2.2rem;width:2px;background:var(--line);}
+#experience .job:last-child::before{display:none;}
+#experience .job::after{content:"";position:absolute;left:0;top:.45rem;width:12px;height:12px;border-radius:50%;background:var(--offense);box-shadow:0 0 0 5px color-mix(in srgb,var(--offense) 16%,transparent);}
+#experience .job+.job::after{background:var(--defense);box-shadow:0 0 0 5px color-mix(in srgb,var(--defense) 16%,transparent);}
+.chips{display:flex;flex-wrap:wrap;gap:.4rem;margin:.9rem 0 .2rem;}
+.chips li,.skills .list li{font-size:.84rem;font-weight:500;padding:.2rem .65rem;border-radius:999px;background:var(--wash);border:1px solid var(--line);color:var(--ink);transition:transform .15s,border-color .15s,opacity .2s;}
+.chips li::after,.skills .list li::after{content:none !important;}
+
+/* Compétences : puces colorées et recherche */
+.skills .list{gap:.4rem;}
+.skills>div:nth-child(1) .list li{background:color-mix(in srgb,var(--offense) 8%,#fff);border-color:color-mix(in srgb,var(--offense) 28%,#fff);color:var(--offense);}
+.skills>div:nth-child(2) .list li{background:color-mix(in srgb,var(--defense) 9%,#fff);border-color:color-mix(in srgb,var(--defense) 32%,#fff);color:var(--defense);}
+.skills .list li:hover{transform:translateY(-2px);border-color:var(--ink);}
+.skills .list li.dim{opacity:.22;}
+.skills .list li.hit{border-color:var(--ink);box-shadow:0 0 0 2px color-mix(in srgb,var(--ink) 18%,transparent);}
+.skill-search{width:100%;max-width:360px;font:inherit;font-size:.95rem;padding:.6rem .9rem;border:1px solid var(--line);border-radius:6px;background:#fff;color:var(--ink);margin-bottom:1.4rem;}
+.skill-search:focus{outline:2px solid var(--offense);outline-offset:1px;border-color:var(--offense);}
+.skill-count{font-size:.88rem;color:var(--faint);margin-left:.8rem;}
+
+/* Formation : rail */
+.edu{position:relative;padding-left:2rem;border-top:none;}
+.edu:last-of-type{border-bottom:none;}
+.edu::before{content:"";position:absolute;left:5px;top:1.3rem;bottom:-1rem;width:2px;background:var(--line);}
+.edu:last-of-type::before{display:none;}
+.edu::after{content:"";position:absolute;left:0;top:1.2rem;width:12px;height:12px;border-radius:50%;background:#fff;border:3px solid var(--offense);}
+.edu:first-of-type::after{background:var(--offense);}
+.edu:first-of-type .yr::after{content:"en cours";display:block;width:fit-content;margin-top:.25rem;font-size:.75rem;font-weight:600;padding:.1rem .5rem;border-radius:999px;background:color-mix(in srgb,var(--defense) 14%,#fff);color:var(--defense);}
+.row .k{position:relative;padding-left:1.6rem;}
+.row .k::before{content:"";position:absolute;left:0;top:.38em;width:.9rem;height:.9rem;border-radius:50%;background:color-mix(in srgb,var(--defense) 16%,#fff);box-shadow:inset 0 0 0 2px var(--defense);}
+.row .k:has(.pending)::before{background:#fff;box-shadow:inset 0 0 0 2px var(--faint);}
+
+/* CTF : médailles */
+.ctf{align-items:start;}
+.ctf .rank{display:flex;align-items:center;justify-content:center;width:84px;height:84px;border-radius:50%;font-size:2rem;}
+.ctf:first-child .rank{color:#6B4E00;background:radial-gradient(circle at 32% 28%,#FFF3C4,#E8C24A 70%,#C9A227);box-shadow:0 0 0 4px #fff,0 0 0 6px #D9B53C;}
+.ctf:nth-child(2) .rank{color:#3B4260;background:radial-gradient(circle at 32% 28%,#fff,#D5D9E6 70%,#B7BDD0);box-shadow:0 0 0 4px #fff,0 0 0 6px #C3C8DA;}
+.ctf:nth-child(2) .rank,.ctf:first-child .rank{margin-left:6px;}
+@media(max-width:600px){.ctf .rank{width:68px;height:68px;font-size:1.6rem;}}
+
+/* Contact : tuiles */
+.tiles{display:grid;grid-template-columns:1fr 1fr;gap:.8rem;margin-top:2rem;max-width:640px;}
+.tile{display:flex;align-items:center;gap:.9rem;padding:.9rem 1rem;border:1px solid #2B3270;border-radius:8px;color:#fff;text-decoration:none;background:rgba(255,255,255,.03);transition:border-color .2s,background .2s,transform .2s;min-width:0;}
+a.tile:hover{border-color:#9FA8FF;background:rgba(159,168,255,.1);transform:translateY(-2px);}
+.tile svg{flex:none;width:22px;height:22px;stroke:#9FA8FF;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;}
+.tile small{display:block;color:#98A0C4;font-size:.8rem;}
+.tile span{display:block;min-width:0;overflow-wrap:anywhere;font-weight:500;font-size:.95rem;}
+.copy{font:inherit;font-weight:600;font-size:.92rem;padding:.65rem 1.2rem;border-radius:4px;background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.55);cursor:pointer;margin-left:.6rem;}
+.copy:hover{background:rgba(255,255,255,.1);}
+@media(max-width:600px){.tiles{grid-template-columns:1fr;}.copy{margin:.6rem 0 0;}}
+@media(prefers-reduced-motion:reduce){.tile,.skills .list li{transition:none;}}
 </style>
 <script>document.documentElement.classList.add('js');</script>
 </head>
 <body>
 <a class="skip" href="#main">Aller au contenu</a>
 
-<header class="site-header">
+<header class="site-header" style="position:sticky">
   <div class="wrap nav">
     <a class="brand" href="#hero">Hind Zabrati</a>
     <nav class="main-nav" aria-label="Navigation principale">
@@ -273,6 +415,7 @@ footer a:hover{color:var(--offense);}
     </nav>
     <a class="btn btn-solid" href="CV.pdf" download>Télécharger le CV</a>
   </div>
+  <div class="progress" id="progress" aria-hidden="true"></div>
 </header>
 
 <main id="main">
@@ -300,13 +443,13 @@ footer a:hover{color:var(--offense);}
       <h2 id="chain-title">Mon périmètre, de la reconnaissance à la remédiation</h2>
       <p class="chain-hint">Sélectionne une étape pour voir où je l'ai pratiquée.</p>
       <div class="chain-sides" aria-hidden="true"><span class="s-off">Offensif</span><span class="s-def">Défensif</span></div>
-      <ol class="chain-steps">
+      <div class="chain-track"><ol class="chain-steps">
         <li class="off active"><button type="button" class="step" aria-pressed="true" aria-controls="cp0"><span class="side-m">Offensif</span><span class="step-name">Reconnaissance</span><span class="step-tools">Nmap, OSINT, BloodHound</span></button></li>
         <li class="off"><button type="button" class="step" aria-pressed="false" aria-controls="cp1"><span class="side-m">Offensif</span><span class="step-name">Exploitation</span><span class="step-tools">Metasploit, Kerberoasting, injection de prompt</span></button></li>
         <li class="off"><button type="button" class="step" aria-pressed="false" aria-controls="cp2"><span class="side-m">Offensif</span><span class="step-name">Post-exploitation</span><span class="step-tools">Pass-the-Hash, DCSync, NTDS.dit</span></button></li>
         <li class="def"><button type="button" class="step" aria-pressed="false" aria-controls="cp3"><span class="side-m">Défensif</span><span class="step-name">Détection</span><span class="step-tools">Wazuh, Suricata, analyse d'IoC</span></button></li>
         <li class="def"><button type="button" class="step" aria-pressed="false" aria-controls="cp4"><span class="side-m">Défensif</span><span class="step-name">Remédiation</span><span class="step-tools">Durcissement, segmentation, filtres LLM</span></button></li>
-      </ol>
+      </ol><span class="packet" aria-hidden="true"></span></div>
       <div class="chain-panel" aria-live="polite">
         <div class="cp off on" id="cp0">
           <h3>Reconnaissance</h3>
@@ -348,6 +491,12 @@ footer a:hover{color:var(--offense);}
         <p>Je m'intéresse aussi à la sécurité automobile, où j'ai conçu des scénarios de risque et un challenge CAN Bus pendant mon stage à Doha, et à la sécurité des applications LLM, avec l'audit et le durcissement d'un assistant interne.</p>
         <p>Je recherche un stage PFE de 6 mois à partir de février 2027 pour contribuer à des missions concrètes de sécurité.</p>
       </div>
+      <div class="figures">
+        <div class="fig"><b data-n="2">2</b><span>stages en cybersécurité</span></div>
+        <div class="fig"><b data-n="8">8</b><span>scénarios conçus à Doha</span></div>
+        <div class="fig"><b data-n="9">9</b><span>tâches dans le challenge Speed Spoofing</span></div>
+        <div class="fig"><b data-n="62" data-suf="<sup>e</sup>">62<sup>e</sup></b><span>sur 1068 équipes au MACC 2026</span></div>
+      </div>
       <dl class="defs facts">
         <div><dt>Formation</dt><dd>Cycle d'ingénieur en Sécurité IT, 5<sup>e</sup> année</dd></div>
         <div><dt>Axes</dt><dd>Offensif, défensif, automobile, LLM</dd></div>
@@ -368,6 +517,7 @@ footer a:hover{color:var(--offense);}
           <h3>Stagiaire cybersécurité, sécurité automobile</h3>
           <span class="when">Juillet – Août 2026</span>
         </div>
+        <ul class="chips"><li>Proxmox VE</li><li>Wazuh</li><li>ICSim</li><li>SocketCAN</li><li>ISO/SAE 21434</li><li>MITRE ATT&amp;CK for ICS</li></ul>
         <p class="org">Ovivia AI Solution, Doha (Qatar)</p>
         <ul class="points">
           <li>Conception de 8 scénarios du parcours Automotive Risk Management (modules Accidental Risk et Regulatory Risk), basés sur ISO/SAE 21434 et UNECE R155/R156, avec une méthodologie d'investigation standardisée : Discover, Collect Evidence, Analyze, Decide, Mitigate.</li>
@@ -399,6 +549,7 @@ footer a:hover{color:var(--offense);}
           <h3>Stagiaire cybersécurité, simulation d'attaque et détection</h3>
           <span class="when">Juillet 2025</span>
         </div>
+        <ul class="chips"><li>Kali Linux</li><li>Metasploitable 2</li><li>Nmap</li><li>Wazuh</li><li>Suricata</li></ul>
         <p class="org">Ménara Holding, Marrakech</p>
         <ul class="points">
           <li>Simulation d'une attaque chaînée dans un laboratoire isolé de trois machines virtuelles (Kali Linux, Metasploitable 2, Wazuh avec Suricata) : reconnaissance Nmap, exploitation de Tomcat Manager, reverse shell, connexion SSH, élévation de privilèges et post-exploitation.</li>
@@ -424,6 +575,11 @@ footer a:hover{color:var(--offense);}
   <div class="wrap sec">
     <h2>Projets</h2>
     <div>
+      <div class="filters" role="group" aria-label="Filtrer les projets">
+        <button type="button" data-f="all" aria-pressed="true">Tous</button>
+        <button type="button" data-f="off" aria-pressed="false">Offensif</button>
+        <button type="button" data-f="def" aria-pressed="false">Défensif</button>
+      </div>
       <article class="proj" id="proj-cabinet">
         <h3>CabinetShield, appliance IDS open source pour cabinets médicaux</h3>
         <p class="meta"><span class="kind def">Défensif</span><span class="status">En cours</span></p>
@@ -534,6 +690,9 @@ footer a:hover{color:var(--offense);}
 <section id="competences">
   <div class="wrap sec">
     <h2>Compétences techniques</h2>
+    <div>
+    <label class="sr-only" for="sk" style="position:absolute;left:-9999px">Rechercher une compétence</label>
+    <input id="sk" class="skill-search" type="search" placeholder="Rechercher un outil, ex. Wazuh" autocomplete="off"><span class="skill-count" id="skc" aria-live="polite"></span>
     <dl class="defs skills">
       <div><dt>Sécurité offensive</dt><dd><ul class="list"><li>Nmap</li><li>Metasploit</li><li>BloodHound</li><li>Mimikatz</li><li>NetExec</li><li>Impacket</li><li>Hydra</li><li>Hashcat</li><li>Burp Suite</li><li>OWASP ZAP</li></ul></dd></div>
       <div><dt>Sécurité défensive</dt><dd><ul class="list"><li>Wazuh (SIEM)</li><li>Security Onion</li><li>Suricata (IDS/IPS)</li><li>Wireshark</li></ul></dd></div>
@@ -544,6 +703,7 @@ footer a:hover{color:var(--offense);}
       <div><dt>Systèmes et programmation</dt><dd><ul class="list"><li>Linux</li><li>Windows Server</li><li>Active Directory</li><li>Kerberos</li><li>Git/GitHub</li><li>Python</li><li>C</li><li>Java</li><li>JavaScript</li><li>PHP</li><li>SQL</li></ul></dd></div>
       <div><dt>Cryptographie et gouvernance</dt><dd><ul class="list"><li>AES</li><li>RSA</li><li>Diffie-Hellman</li><li>SHA-256</li><li>TLS 1.3</li><li>ISO 27001</li><li>Analyse des risques</li></ul></dd></div>
     </dl>
+    </div>
   </div>
 </section>
 
@@ -584,7 +744,7 @@ footer a:hover{color:var(--offense);}
     <div>
       <div class="ctf">
         <div class="rank">1<sup>re</sup></div>
-        <div><h3>MACC 2026, DGSSI et SecDojo</h3><p>1<sup>re</sup> place à la FSTG et 62<sup>e</sup> sur 1068 équipes au niveau global.</p></div>
+        <div><h3>MACC 2026, DGSSI et SecDojo</h3><p>1<sup>re</sup> place à la FSTG et 62<sup>e</sup> sur 1068 équipes au niveau global.</p><div class="rankbar" role="img" aria-label="62e sur 1068 équipes, soit environ les 6 % meilleurs"><i style="width:5.8%"></i><b style="left:5.8%"></b></div><p class="rb-cap">62<sup>e</sup> sur 1068, environ les 6 % meilleurs</p></div>
       </div>
       <div class="ctf">
         <div class="rank">8<sup>e</sup></div>
@@ -599,14 +759,14 @@ footer a:hover{color:var(--offense);}
     <h2>Contact</h2>
     <div>
       <p class="contact-lede">Ouverte aux stages PFE en sécurité offensive, défensive, automobile ou LLM, à Marrakech ou à distance.</p>
-      <a class="btn btn-solid" href="mailto:zabratihind@hotmail.com">Écrire un email</a>
-      <dl class="defs contact-list">
-        <div><dt>Email</dt><dd><a href="mailto:zabratihind@hotmail.com">zabratihind@hotmail.com</a></dd></div>
-        <div><dt>Téléphone</dt><dd><a href="tel:+212777826922">+212 777 826 922</a></dd></div>
-        <div><dt>LinkedIn</dt><dd><a href="https://www.linkedin.com/in/hind-zabrati-bab5a6334" target="_blank" rel="noopener">linkedin.com/in/hind-zabrati</a></dd></div>
-        <div><dt>GitHub</dt><dd><a href="https://github.com/hind-za" target="_blank" rel="noopener">github.com/hind-za</a></dd></div>
-        <div><dt>Localisation</dt><dd>Marrakech, Maroc</dd></div>
-      </dl>
+      <a class="btn btn-solid" href="mailto:zabratihind@hotmail.com">Écrire un email</a><button type="button" class="copy" id="copy">Copier l'adresse</button>
+      <div class="tiles">
+        <a class="tile" href="mailto:zabratihind@hotmail.com"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg><div><small>Email</small><span>zabratihind@hotmail.com</span></div></a>
+        <a class="tile" href="tel:+212777826922"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg><div><small>Téléphone</small><span>+212 777 826 922</span></div></a>
+        <a class="tile" href="https://www.linkedin.com/in/hind-zabrati-bab5a6334" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 11v6M8 7.5v.01M12 17v-6m0 3a3 3 0 0 1 6 0v3"/></svg><div><small>LinkedIn</small><span>linkedin.com/in/hind-zabrati</span></div></a>
+        <a class="tile" href="https://github.com/hind-za" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 19c-4 1.5-4-2-6-2m12 4v-3.5a3 3 0 0 0-.8-2.3c2.800-.3 5.800-1.400 5.800-6.200a4.800 4.800 0 0 0-1.300-3.300 4.500 4.500 0 0 0-.1-3.300s-1.100-.3-3.500 1.300a12 12 0 0 0-6.200 0C6.500 2.800 5.400 3.100 5.400 3.100a4.500 4.500 0 0 0-.1 3.300A4.800 4.800 0 0 0 4 9.700c0 4.800 3 5.900 5.800 6.200A3 3 0 0 0 9 18.200V21"/></svg><div><small>GitHub</small><span>github.com/hind-za</span></div></a>
+        <div class="tile"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.200-7-11a7 7 0 0 1 14 0c0 4.800-7 11-7 11z"/><circle cx="12" cy="10" r="2.500"/></svg><div><small>Localisation</small><span>Marrakech, Maroc</span></div></div>
+      </div>
     </div>
   </div>
 </section>
@@ -635,6 +795,67 @@ footer a:hover{color:var(--offense);}
   }
   items.forEach(function (li, i) {
     li.addEventListener('click', function () { select(i); });
+  });
+
+  var arts = document.querySelectorAll('#projets .proj');
+  arts.forEach(function (a) {
+    var k = a.querySelector('.kind');
+    a.dataset.k = k ? (k.classList.contains('both') ? 'both' : k.classList.contains('off') ? 'off' : 'def') : 'def';
+  });
+  var fb = document.querySelectorAll('.filters button');
+  fb.forEach(function (b) {
+    b.addEventListener('click', function () {
+      var f = b.dataset.f;
+      fb.forEach(function (x) { x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
+      arts.forEach(function (a) { a.hidden = !(f === 'all' || a.dataset.k === f || a.dataset.k === 'both'); });
+    });
+  });
+})();
+
+(function () {
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // barre de progression et section active
+  var bar = document.getElementById('progress');
+  var links = [].slice.call(document.querySelectorAll('.nav-links a'));
+  var secs = links.map(function (a) { return document.querySelector(a.getAttribute('href')); });
+  function onScroll() {
+    var h = document.documentElement;
+    var max = h.scrollHeight - h.clientHeight;
+    bar.style.transform = 'scaleX(' + (max > 0 ? h.scrollTop / max : 0) + ')';
+    var cur = -1, y = h.scrollTop + 140;
+    secs.forEach(function (el, i) { if (el && el.offsetTop <= y) cur = i; });
+    links.forEach(function (a, i) { a.classList.toggle('cur', i === cur); });
+  }
+  window.addEventListener('scroll', onScroll, { passive: true }); onScroll();
+  // chiffres
+  var figs = [].slice.call(document.querySelectorAll('.fig b'));
+  function count(b) {
+    var n = +b.dataset.n, suf = b.dataset.suf || '', t0 = null;
+    if (reduce) return;
+    function f(t) { t0 = t0 || t; var k = Math.min((t - t0) / 1100, 1); b.innerHTML = Math.round(n * (1 - Math.pow(1 - k, 3))) + suf; if (k < 1) requestAnimationFrame(f); }
+    requestAnimationFrame(f);
+  }
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { count(e.target); io.unobserve(e.target); } }); }, { threshold: .6 });
+    figs.forEach(function (b) { io.observe(b); });
+  }
+  // recherche de compétences
+  var inp = document.getElementById('sk'), cnt = document.getElementById('skc');
+  var chips = [].slice.call(document.querySelectorAll('.skills .list li'));
+  inp.addEventListener('input', function () {
+    var q = inp.value.trim().toLowerCase(), n = 0;
+    chips.forEach(function (c) {
+      var m = q && c.textContent.toLowerCase().indexOf(q) > -1;
+      c.classList.toggle('hit', !!m); c.classList.toggle('dim', !!q && !m); if (m) n++;
+    });
+    cnt.textContent = q ? (n + (n > 1 ? ' résultats' : ' résultat')) : '';
+  });
+  // copie de l'email
+  var cb = document.getElementById('copy');
+  cb.addEventListener('click', function () {
+    var done = function () { cb.textContent = 'Adresse copiée'; setTimeout(function () { cb.textContent = "Copier l'adresse"; }, 2000); };
+    if (navigator.clipboard) navigator.clipboard.writeText('zabratihind@hotmail.com').then(done, function () { cb.textContent = 'zabratihind@hotmail.com'; });
+    else cb.textContent = 'zabratihind@hotmail.com';
   });
 })();
 </script>
